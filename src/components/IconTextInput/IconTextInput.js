@@ -13,6 +13,8 @@ class IconTextInput extends Component {
                     source={this.props.iconLink} />
                 <TextInput 
                     style={styles.input}
+                    underlineColorAndroid='transparent'
+                    autoCorrect={false}
                     defaultValue={this.props.placeHolder} />
             </View>
         );
@@ -28,9 +30,9 @@ const styles = StyleSheet.create({
     },
 
     icon:{
-        width: 24,
-        height: 24,
-        marginRight: 10,
+        width: 21,
+        height: 21,
+        marginRight: 5,
         marginLeft: 5
     },
 
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
         flex: 6,
         height: 40,
         justifyContent: 'center',
+        color: 'white',
     }
 });
 
