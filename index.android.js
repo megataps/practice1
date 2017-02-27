@@ -10,12 +10,14 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import SignIn from 'containers/SignIn'
+// import SignIn from 'containers/SignIn'
+import Root from './src/root'
+
 
 export default class practice1 extends Component {
   render() {
     return (
-        <SignIn />
+        <Root />
     );
   }
 }

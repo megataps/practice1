@@ -80,10 +80,14 @@ class SignIn extends Component {
                             flex: 1,
                             paddingBottom: 20,
                             alignItems: 'center',
-                            justifyContent: 'flex-end',
+                            justifyContent: 'center',
+                            flexDirection: 'row'
                         }
                     }>
-                        <Text style={{ color: 'white' }}>Don't have an account? Sign Up</Text>
+                        <Text style={{ color: 'white' }}>Don't have an account?</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold' }}
+                            onPress= {this.onSignUpPress.bind(this)}
+                        > Sign Up</Text>
                     </View>
                 </View>
 
@@ -93,6 +97,10 @@ class SignIn extends Component {
 
     onSignInPress() {
         Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
+    }
+
+    onSignUpPress() {
+        this.props.navigator.push({id: 2,});
     }
 }
 
