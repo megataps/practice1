@@ -9,11 +9,11 @@ export default StyleSheet.create({
     },
 
     logo: {
-        flex: 1.25,
+        flex: 1,
     },
 
     inputForm: {
-        flex: 2.25,
+        flex: 2,
         alignItems: 'center',
         paddingLeft: 25,
         paddingRight: 25,
