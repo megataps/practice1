@@ -1,7 +1,14 @@
 //import liraries
 import React, { Component } from 'react';
 import {
-    View, StyleSheet, Text, Image, TextInput, TouchableHighlight, Alert
+    View, 
+    StyleSheet, 
+    Text, 
+    Image, 
+    TextInput, 
+    TouchableHighlight, 
+    Alert,
+    TouchableOpacity
 } from 'react-native';
 
 import CircleImageView from 'components/CircleImageView/CircleImageView';
@@ -36,8 +43,9 @@ class SignIn extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
-                            onChangeText={(text) => this.setState({ text })}
-                            iconLink={require('assets/images/email.png')}
+                            onChangeText={(text) => this.setState({ username: text })}
+                            iconLink={require('assets/images/user_name.png')}
+                            isPassword={false}
                             placeHolder='Username' />
                     </View>
 
@@ -45,21 +53,25 @@ class SignIn extends Component {
                     </View>
 
                     <View style={styles.input}>
-                        <IconTextInput iconLink={require('assets/images/password.png')}
+                        <IconTextInput 
+                            onChangeText={(text) => this.setState({ password: text })}
+                            iconLink={require('assets/images/password.png')}
+                            isPassword={true}
                             placeHolder='Password' />
                     </View>
 
                     <View style={styles.verticalIndicator} />
 
-                    <View style={{ marginTop: 10, alignSelf: 'flex-end' }}>
+                    <TouchableOpacity style={{ marginTop: 10, alignSelf: 'flex-end' }}>
                         <Text style={{ color: 'white' }}>Forgot Password</Text>
-                    </View>
+                    </TouchableOpacity>
 
                 </View>
 
                 <View style={styles.bottomBar}>
                     <TouchableHighlight style={styles.signInButton}
-                        onPress={this.onSignInPress}>
+                        onPress={this.onSignInPress.bind(this)}
+                        underlayColor='#43ff3366'>
                         <Text style={styles.button}>Sign In</Text>
                     </TouchableHighlight>
 
@@ -79,8 +91,8 @@ class SignIn extends Component {
         );
     }
 
-    onSignInPress(event) {
-        Alert.alert('Button has been pressed!');
+    onSignInPress() {
+        Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
     }
 }
 

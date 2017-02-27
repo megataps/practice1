@@ -12,14 +12,19 @@ class IconTextInput extends Component {
                     style={styles.icon}
                     resizeMode='contain'
                     source={this.props.iconLink} />
-                <TextInput 
+                <TextInput
+                    {...this.props}
                     style={styles.input}
                     underlineColorAndroid='transparent'
                     autoCorrect={false}
+                    secureTextEntry={this.props.isPassword}
+                    placeholderTextColor='white'
                     placeholder={this.props.placeHolder} />
             </View>
         );
     }
+
 }
+
 //make this component available to the app
 export default IconTextInput;
