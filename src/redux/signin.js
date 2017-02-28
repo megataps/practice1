@@ -28,6 +28,33 @@ const INITIAL_STATE= {
     loading: false
 }
 
+export function signInReducer(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: ''
+			};
+		case SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: '',
+				user: action.payload
+			};
+		case FAILED:
+			console.log(action.error);
+			return {
+				...state,
+				loading: false,
+				error: action.error
+			};
+		default:
+      return state;
+  }
+};
+
 
 const userInfo = {
 	trainee_id: 1,
