@@ -1,18 +1,19 @@
 //import liraries
 import React, { Component } from 'react';
 import {
-    View, 
-    StyleSheet, 
-    Text, 
-    Image, 
-    TextInput, 
-    TouchableHighlight, 
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    TextInput,
+    TouchableHighlight,
     Alert,
     TouchableOpacity
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 
+import { singin } from 'redux/signin';
 
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
@@ -32,13 +33,18 @@ class SignIn extends Component {
     }
 
     render() {
+
+        if (this.props.user) {
+            Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
+        }
+
         return (
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
 
                 <View style={styles.logo}>
                     <CircleImageView
-                        imageLink={require('assets/images/check_red.png')}
+                        iconUrI={require('assets/images/check_red.png')}
                     />
                 </View>
 
@@ -47,7 +53,7 @@ class SignIn extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ username: text })}
-                            iconLink={require('assets/images/user_name.png')}
+                            iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
                             placeHolder='Username' />
                     </View>
@@ -56,9 +62,9 @@ class SignIn extends Component {
                     </View>
 
                     <View style={styles.input}>
-                        <IconTextInput 
+                        <IconTextInput
                             onChangeText={(text) => this.setState({ password: text })}
-                            iconLink={require('assets/images/password.png')}
+                            iconUrI={require('assets/images/password.png')}
                             isPassword={true}
                             placeHolder='Password' />
                     </View>
@@ -89,7 +95,7 @@ class SignIn extends Component {
                     }>
                         <Text style={{ color: 'white' }}>Don't have an account?</Text>
                         <Text style={{ color: 'white', fontWeight: 'bold' }}
-                            onPress= {this.onSignUpPress.bind(this)}
+                            onPress={this.onSignUpPress.bind(this)}
                         > Sign Up</Text>
                     </View>
                 </View>
@@ -99,11 +105,16 @@ class SignIn extends Component {
     }
 
     onSignInPress() {
-        Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
+        // Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
+
+        this.props.login({
+            username: this.state.username,
+            password: this.state.password
+        });
     }
 
     onSignUpPress() {
-        Actions.signup();
+        Actions.SignUp();
     }
 }
 

@@ -1,9 +1,9 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 import styles from './Styles';
+import Colors from 'config/colors';
 
-// create a component
 class IconTextInput extends Component {
     render() {
         return (
@@ -11,20 +11,22 @@ class IconTextInput extends Component {
                 <Image
                     style={styles.icon}
                     resizeMode='contain'
-                    source={this.props.iconLink} />
+                    source={this.props.iconUrI} />
                 <TextInput
                     {...this.props}
                     style={styles.input}
-                    underlineColorAndroid='transparent'
+                    underlineColorAndroid={Colors.transparent}
                     autoCorrect={false}
                     secureTextEntry={this.props.isPassword}
-                    placeholderTextColor='white'
+                    placeholderTextColor={Colors.white}
                     placeholder={this.props.placeHolder} />
             </View>
         );
     }
-
 }
 
-//make this component available to the app
+IconTextInput.propTypes = {
+  iconUrI: PropTypes.number.isRequired
+};
+
 export default IconTextInput;

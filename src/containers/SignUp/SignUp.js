@@ -22,7 +22,7 @@ class SignUp extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ username: text })}
-                            iconLink={require('assets/images/user_name.png')}
+                            iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
                             placeHolder='Name' />
                     </View>
@@ -33,7 +33,7 @@ class SignUp extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ username: text })}
-                            iconLink={require('assets/images/email.png')}
+                            iconUrI={require('assets/images/email.png')}
                             isPassword={false}
                             placeHolder='Email' />
                     </View>
@@ -44,7 +44,7 @@ class SignUp extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ password: text })}
-                            iconLink={require('assets/images/password.png')}
+                            iconUrI={require('assets/images/password.png')}
                             isPassword={true}
                             placeHolder='Password' />
                     </View>
@@ -55,7 +55,7 @@ class SignUp extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ username: text })}
-                            iconLink={require('assets/images/birthday.png')}
+                            iconUrI={require('assets/images/birthday.png')}
                             isPassword={false}
                             placeHolder='Birthday' />
                     </View>
