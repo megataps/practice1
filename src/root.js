@@ -45,19 +45,19 @@ class Root extends Component {
                 initialRoute={{ id: 1, }}
                 renderScene={this._renderScene}
                 configureScene={this._configureScene}
-            />
-        );
-    }
-}
-
-                /*navigationBar={
+                navigationBar={
                     <Navigator.NavigationBar
                         routeMapper={{
                             LeftButton: (route, navigator, index, navState) => {
-                                return (
-                                    <Image
-                                        resizeMode='contain'
-                                        source={'practice1/src/assets/images/back.png'} />);
+                                if (route.id === 2) {
+                                    return (
+                                        <Image
+                                            style={{alignSelf: 'flex-start', margin: 10, marginLeft: 15, width: 30, height: 20}}
+                                            resizeMode='contain'
+                                            source={require('practice1/src/assets/images/back.png')} />);
+                                } else {
+                                    return (<Text></Text>);
+                                }
                             },
                             RightButton: (route, navigator, index, navState) => {
                                 return (<Text></Text>);
@@ -69,7 +69,32 @@ class Root extends Component {
                         style={{ backgroundColor: 'transparent' }}
                     />
 
-                }*/
+                }
+            />
+        );
+    }
+}
+
+/*navigationBar={
+    <Navigator.NavigationBar
+        routeMapper={{
+            LeftButton: (route, navigator, index, navState) => {
+                return (
+                    <Image
+                        resizeMode='contain'
+                        source={'practice1/src/assets/images/back.png'} />);
+            },
+            RightButton: (route, navigator, index, navState) => {
+                return (<Text></Text>);
+            },
+            Title: (route, navigator, index, navState) => {
+                return (<Text></Text>);
+            },
+        }}
+        style={{ backgroundColor: 'transparent' }}
+    />
+
+}*/
 
 //make this component available to the app
 export default Root;

@@ -13,14 +13,8 @@ class SignUp extends Component {
                 source={require('assets/images/bg_signin.png')}>
 
                 <View style={styles.logo}>
-
-                    <Image
-                        style={{alignSelf: 'flex-start', margin: 10, marginLeft: 15, width: 30, height: 20}}
-                        source={require('assets/images/back.png')}
-                        resizeMode='contain' />
-
-
-                    <Text style={{ color: 'white', fontSize: 21, marginLeft: 15, marginTop: 20 }}>Sign Up </Text>
+                
+                    <Text style={{ color: 'white', fontSize: 21, marginLeft: 15, marginTop: 40 }}>Sign Up </Text>
                 </View>
 
                 <View style={styles.inputForm}>

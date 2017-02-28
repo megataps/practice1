@@ -11,6 +11,9 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
+
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
 
@@ -100,7 +103,7 @@ class SignIn extends Component {
     }
 
     onSignUpPress() {
-        this.props.navigator.push({id: 2,});
+        Actions.signup();
     }
 }
 
