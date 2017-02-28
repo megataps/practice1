@@ -64,26 +64,34 @@ const userInfo = {
 	token: 'abcxyzwendsjkfjdsklfjkds'
 };
 
+const errorMsg = {
+	message: 'error has occured'
+}
+
 export function login(userCredentials) {
 	if (userCredentials.username === 'test@gmail.com' && userCredentials.password === '123456') {
-		loginRequestSuccess(userInfo);
+		return loginRequestSuccess(userInfo);
 	} else {
-		loginRequestFailed();
+		return loginRequestFailed(errorMsg);
 	}
 }
 
-// Map Redux state to component props
-function mapStateToProps(state) {
-  return {
-    error: state.signInReducer.error,
-    loading: state.signInReducer.loading,
-    user: state.signInReducer.user
-  }
-}
-
-// Map Redux actions to component props
-function mapDispatchToProps(dispatch) {
-  return {
-    login: (userCredentials) => dispatch(login(userCredentials))
-  }
-}
+// export function login(userCredentials) {
+//   return (dispatch, getState) => {
+//     dispatch(loginRequest());
+// 		//AuthenticationService.signin(userCredentials)
+// 		setTimeout(() => {
+//             dispatch(logInRequestSuccess(userInfo));
+// 		}, 1000 * 3)
+//     .then(response => {
+//       return response.json();
+//     })
+//     .then(jsonTask => {
+//         dispatch(loginRequestSuccess(jsonTask));
+//     })
+//     .catch(error => {
+//       console.log('There has been a problem with your fetch operation: ' + error.message);
+//       dispatch(loginRequestFailed(error))
+//     });
+//   };
+// }

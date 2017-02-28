@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Actions, Scene, Router, ActionConst } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
-import store from 'config/store';
+import configureStore from 'config/store';
 import SignIn from 'containers/SignIn/SignIn'
 import SignUp from 'containers/SignUp/SignUp'
 
 import routes, { listRoutes } from 'config/routes';
+
+const store = configureStore();
 
 const scenes = Actions.create(
     <Scene key="root">

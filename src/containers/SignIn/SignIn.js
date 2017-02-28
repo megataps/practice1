@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-
-import { singin } from 'redux/signin';
+import { connect } from 'react-redux';
+import { login } from 'redux/signin';
 
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
@@ -30,6 +30,8 @@ class SignIn extends Component {
             username: '',
             password: ''
         };
+
+        this.onSignInPress = this.onSignInPress.bind(this);
     }
 
     render() {
@@ -79,7 +81,7 @@ class SignIn extends Component {
 
                 <View style={styles.bottomBar}>
                     <TouchableHighlight style={styles.signInButton}
-                        onPress={this.onSignInPress.bind(this)}
+                        onPress={this.onSignInPress}
                         underlayColor='#43ff3366'>
                         <Text style={styles.button}>Sign In</Text>
                     </TouchableHighlight>
@@ -106,7 +108,6 @@ class SignIn extends Component {
 
     onSignInPress() {
         // Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
-
         this.props.login({
             username: this.state.username,
             password: this.state.password
@@ -118,5 +119,25 @@ class SignIn extends Component {
     }
 }
 
-//make this component available to the app
-export default SignIn;
+// Map Redux state to component props
+function mapStateToProps(state) {
+    return {
+        error: state.signInReducer.error,
+        loading: state.signInReducer.loading,
+        user: state.signInReducer.user
+    }
+}
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+    return {
+        login: (userCredentials) => dispatch(login(userCredentials))
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {
+        login
+    }
+)(SignIn);
