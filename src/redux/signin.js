@@ -1,4 +1,6 @@
 
+import AuthenticationService from 'network/AuthenticationService'
+
 const REQUEST = 'Request';
 const SUCCESS = 'Success';
 const FAILED = 'Failed';
@@ -69,29 +71,15 @@ const errorMsg = {
 }
 
 export function login(userCredentials) {
-	if (userCredentials.username === 'test@gmail.com' && userCredentials.password === '123456') {
-		return loginRequestSuccess(userInfo);
-	} else {
-		return loginRequestFailed(errorMsg);
-	}
+  return (dispatch, getState) => {
+    dispatch(loginRequest());
+	return AuthenticationService.signin(userCredentials)
+    .then(response => {
+      dispatch(loginRequestSuccess(response));
+    })
+    .catch(error => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+      dispatch(loginRequestFailed(error))
+    });
+  };
 }
-
-// export function login(userCredentials) {
-//   return (dispatch, getState) => {
-//     dispatch(loginRequest());
-// 		//AuthenticationService.signin(userCredentials)
-// 		setTimeout(() => {
-//             dispatch(logInRequestSuccess(userInfo));
-// 		}, 1000 * 3)
-//     .then(response => {
-//       return response.json();
-//     })
-//     .then(jsonTask => {
-//         dispatch(loginRequestSuccess(jsonTask));
-//     })
-//     .catch(error => {
-//       console.log('There has been a problem with your fetch operation: ' + error.message);
-//       dispatch(loginRequestFailed(error))
-//     });
-//   };
-// }

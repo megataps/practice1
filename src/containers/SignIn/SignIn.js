@@ -8,7 +8,8 @@ import {
     TextInput,
     TouchableHighlight,
     Alert,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -27,11 +28,30 @@ class SignIn extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            email: '',
             password: ''
         };
 
         this.onSignInPress = this.onSignInPress.bind(this);
+    }
+
+    checkToRenderLoading() {
+        if (this.props.loading) {
+            return (
+                <ActivityIndicator
+                    style={[styles.loader]}
+                    color='white'
+                    size='large' />
+            );
+        }
+        return (
+            <TouchableHighlight
+                style={styles.signInButton}
+                onPress={this.onSignInPress}
+                underlayColor='#43ff3366'>
+                <Text style={styles.button}>Sign In</Text>
+            </TouchableHighlight>
+        );
     }
 
     render() {
@@ -54,7 +74,7 @@ class SignIn extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
-                            onChangeText={(text) => this.setState({ username: text })}
+                            onChangeText={(text) => this.setState({ email: text })}
                             iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
                             placeHolder='Username' />
@@ -80,11 +100,15 @@ class SignIn extends Component {
                 </View>
 
                 <View style={styles.bottomBar}>
-                    <TouchableHighlight style={styles.signInButton}
+                    <Text style={styles.errorText}>
+                        {this.props.error}
+                    </Text>
+                    {this.checkToRenderLoading()}
+                    {/*<TouchableHighlight style={styles.signInButton}
                         onPress={this.onSignInPress}
                         underlayColor='#43ff3366'>
                         <Text style={styles.button}>Sign In</Text>
-                    </TouchableHighlight>
+                    </TouchableHighlight>*/}
 
                     <View style={
                         {
@@ -107,9 +131,9 @@ class SignIn extends Component {
     }
 
     onSignInPress() {
-        // Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
+        // Alert.alert('username:' + this.state.email + 'password:' + this.state.password);
         this.props.login({
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         });
     }
