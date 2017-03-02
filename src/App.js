@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Actions, Scene, Router, ActionConst } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configureStore from 'config/store';
-import SignIn from 'containers/SignIn/SignIn'
-import SignUp from 'containers/SignUp/SignUp'
+import SignInScreen from 'containers/SignIn/SignInScreen'
+import SignUpScreen from 'containers/SignUp/SignUpScreen'
 
 import routes, { listRoutes } from 'config/routes';
 
@@ -12,13 +12,13 @@ const store = configureStore();
 const scenes = Actions.create(
     <Scene key="root">
         <Scene
-            key="SignIn"
-            component={SignIn}
+            key="SignInScene"
+            component={SignInScreen}
             initial={true}
             hideNavBar={true} />
         <Scene
-            key="SignUp"
-            component={SignUp}
+            key="SignUpScene"
+            component={SignUpScreen}
             title="Sign Up"
             hideNavBar={false}
             type={ActionConst.PUSH}

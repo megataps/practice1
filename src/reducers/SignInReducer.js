@@ -3,20 +3,20 @@ const REQUEST = 'Request';
 const SUCCESS = 'Success';
 const FAILED = 'Failed';
 
-export function loginRequest() {
+function loginRequest() {
     return {
         type: REQUEST
     };
 }
 
-export function loginRequestSuccess(json) {
+function loginRequestSuccess(json) {
     return {
         type: SUCCESS,
         payload: json
     };
 }
 
-export function loginRequestFailed(error) {
+function loginRequestFailed(error) {
     return {
         type: FAILED,
         error: error.message
@@ -68,7 +68,7 @@ const errorMsg = {
 	message: 'error has occured'
 }
 
-export function login(userCredentials) {
+export function onLogin(userCredentials) {
 	if (userCredentials.username === 'test@gmail.com' && userCredentials.password === '123456') {
 		return loginRequestSuccess(userInfo);
 	} else {
@@ -81,7 +81,7 @@ export function login(userCredentials) {
 //     dispatch(loginRequest());
 // 		//AuthenticationService.signin(userCredentials)
 // 		setTimeout(() => {
-//             dispatch(logInRequestSuccess(userInfo));
+// 			dispatch(loginRequestSuccess(userInfo));
 // 		}, 1000 * 3)
 //     .then(response => {
 //       return response.json();

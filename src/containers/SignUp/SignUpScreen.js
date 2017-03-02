@@ -5,15 +5,17 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, TouchableHighlight, Al
 import IconTextInput from 'components/IconTextInput/IconTextInput';
 import styles from './Styles';
 
+var alertDialg = (text) => { Alert.alert(text) };
+
 // create a component
-class SignUp extends Component {
+class SignUpScreen extends Component {
     render() {
         return (
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
 
                 <View style={styles.logo}>
-                
+
                     <Text style={{ color: 'white', fontSize: 21, marginLeft: 15, marginTop: 40 }}>Sign Up </Text>
                 </View>
 
@@ -81,7 +83,8 @@ class SignUp extends Component {
                         }
                     }>
                         <Text style={{ color: 'white' }}>Already have an account? </Text>
-                        <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign In</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold' }}
+                            onPress={this.onSignInPress.bind(this)}> Sign In</Text>
                     </View>
                 </View>
 
@@ -90,9 +93,10 @@ class SignUp extends Component {
     }
 
     onSignInPress() {
-        Alert.alert('Sign up pressed');
+        // Alert.alert('Sign In pressed');
+        alertDialg('Sign In pressed');
     }
 }
 
 //make this component available to the app
-export default SignUp;
+export default SignUpScreen;

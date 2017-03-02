@@ -1,13 +1,13 @@
 import React from 'react';
-import SignIn from 'containers/SignIn/SignIn';
-import SignUp from 'containers/SignUp/SignUp';
+import SignInScreen from 'containers/SignIn/SignInScreen';
+import SignUpScreen from 'containers/SignUp/SignUpScreen';
 
 const routes = {
   getSignInRoute(navigator) {
-    return <SignIn navigator={navigator} />;
+    return <SignInScreen navigator={navigator} />;
   },
   getSignUpRoute(navigator) {
-    return <SignUp navigator={navigator} />;
+    return <SignUpScreen navigator={navigator} />;
   }
 };
 

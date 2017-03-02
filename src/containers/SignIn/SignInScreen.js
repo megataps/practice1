@@ -13,7 +13,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { login } from 'redux/signin';
+import { onLogin } from 'reducers/SignInReducer';
 
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
@@ -21,7 +21,7 @@ import IconTextInput from 'components/IconTextInput/IconTextInput';
 import styles from './Styles';
 
 // create a component
-class SignIn extends Component {
+class SignInScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -30,8 +30,6 @@ class SignIn extends Component {
             username: '',
             password: ''
         };
-
-        this.onSignInPress = this.onSignInPress.bind(this);
     }
 
     render() {
@@ -81,7 +79,7 @@ class SignIn extends Component {
 
                 <View style={styles.bottomBar}>
                     <TouchableHighlight style={styles.signInButton}
-                        onPress={this.onSignInPress}
+                        onPress={this.onSignInPress.bind(this)}
                         underlayColor='#43ff3366'>
                         <Text style={styles.button}>Sign In</Text>
                     </TouchableHighlight>
@@ -107,15 +105,14 @@ class SignIn extends Component {
     }
 
     onSignInPress() {
-        // Alert.alert('username:' + this.state.username + 'password:' + this.state.password);
-        this.props.login({
+        this.props.onLogin({
             username: this.state.username,
             password: this.state.password
         });
     }
 
     onSignUpPress() {
-        Actions.SignUp();
+        Actions.SignUpScene();
     }
 }
 
@@ -131,13 +128,11 @@ function mapStateToProps(state) {
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
     return {
-        login: (userCredentials) => dispatch(login(userCredentials))
+        onLogin: (userCredentials) => dispatch(onLogin(userCredentials))
     }
 }
 
 export default connect(
     mapStateToProps,
-    {
-        login
-    }
-)(SignIn);
+    mapDispatchToProps
+)(SignInScreen);

@@ -2,7 +2,7 @@
  * # reducers
  * This class combines all the reducers into one
  */
-import { signInReducer } from "redux/signin";
+import { signInReducer } from "reducers/SignInReducer";
 import { combineReducers } from "redux";
 
 const RESET_ERROR_MESSAGE = 'Reset Error Message';
