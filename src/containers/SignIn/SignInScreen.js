@@ -45,7 +45,7 @@ class SignInScreen extends Component {
         return (
             <TouchableHighlight
                 style={styles.signInButton}
-                onPress={this.onSignInPress}
+                onPress={this.onSignInPress.bind(this)}
                 underlayColor='#43ff3366'>
                 <Text style={styles.button}>Sign In</Text>
             </TouchableHighlight>
@@ -56,6 +56,7 @@ class SignInScreen extends Component {
 
         if (this.props.user) {
             Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
+            // Actions.MainScene();
         }
 
         return (
@@ -73,9 +74,9 @@ class SignInScreen extends Component {
                     <View style={styles.input}>
                         <IconTextInput
                             onChangeText={(text) => this.setState({ email: text })}
-                            iconUrI={require('assets/images/user_name.png')}
+                            iconUrI={require('assets/images/email.png')}
                             isPassword={false}
-                            placeHolder='Username' />
+                            placeHolder='Email' />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -98,56 +99,38 @@ class SignInScreen extends Component {
                 </View>
 
                 <View style={styles.bottomBar}>
-<<<<<<< HEAD:src/containers/SignIn/SignInScreen.js
-                    <TouchableHighlight style={styles.signInButton}
-                        onPress={this.onSignInPress.bind(this)}
-=======
                     <Text style={styles.errorText}>
                         {this.props.error}
                     </Text>
                     {this.checkToRenderLoading()}
-                    {/*<TouchableHighlight style={styles.signInButton}
-                        onPress={this.onSignInPress}
->>>>>>> origin/master:src/containers/SignIn/SignIn.js
-                        underlayColor='#43ff3366'>
-                        <Text style={styles.button}>Sign In</Text>
-                    </TouchableHighlight>*/}
-
-                    <View style={
-                        {
+                    <View style={{
                             flex: 1,
                             paddingBottom: 20,
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'row'
-                        }
-                    }>
+                        }}>
                         <Text style={{ color: 'white' }}>Don't have an account?</Text>
-                        <Text style={{ color: 'white', fontWeight: 'bold' }}
-                            onPress={this.onSignUpPress.bind(this)}
-                        > Sign Up</Text>
+                        <TouchableOpacity onPress={this.onSignUpPress.bind(this)}>
+                            <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign Up</Text>
+                        </TouchableOpacity>
                     </View>
+
                 </View>
 
-            </Image>
-        );
+            </Image>);
     }
 
     onSignInPress() {
-<<<<<<< HEAD:src/containers/SignIn/SignInScreen.js
         this.props.onLogin({
-            username: this.state.username,
-=======
-        // Alert.alert('username:' + this.state.email + 'password:' + this.state.password);
-        this.props.login({
             email: this.state.email,
->>>>>>> origin/master:src/containers/SignIn/SignIn.js
             password: this.state.password
         });
     }
 
     onSignUpPress() {
-        Actions.SignUpScene();
+        // Actions.SignUpScene();
+        Actions.MainScene();
     }
 }
 

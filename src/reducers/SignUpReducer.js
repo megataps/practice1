@@ -1,26 +1,26 @@
 
 import AuthenticationService from 'network/AuthenticationService'
 
-const SIGN_IN_REQUEST = 'Sign_In_Request';
-const SIGN_IN_SUCCESS = 'Sign_In_Success';
-const SIGN_IN_FAILED = 'Sign_In_Failed';
+const SIGN_UP_REQUEST = 'Sign_Up_Request';
+const SIGN_UP_SUCCESS = 'Sign_Up_Success';
+const SIGN_UP_FAILED = 'Sign_Up_Failed';
 
-function loginRequest() {
+function signUpRequest() {
     return {
-        type: SIGN_IN_REQUEST
+        type: SIGN_UP_REQUEST
     };
 }
 
-function loginRequestSuccess(json) {
+function signUpRequestSuccess(json) {
     return {
-        type: SIGN_IN_SUCCESS,
+        type: SIGN_UP_SUCCESS,
         payload: json
     };
 }
 
-function loginRequestFailed(error) {
+function signUpRequestFailed(error) {
     return {
-        type: SIGN_IN_FAILED,
+        type: SIGN_UP_FAILED,
         error: error.message
     };
 }
@@ -30,22 +30,22 @@ const INITIAL_STATE = {
     loading: false
 }
 
-export function signInReducer(state = INITIAL_STATE, action) {
+export function signUpReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case SIGN_IN_REQUEST:
+        case SIGN_UP_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: ''
             };
-        case SIGN_IN_SUCCESS:
+        case SIGN_UP_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: '',
                 user: action.payload
             };
-        case SIGN_IN_FAILED:
+        case SIGN_UP_FAILED:
             console.log(action.error);
             return {
                 ...state,
@@ -57,16 +57,16 @@ export function signInReducer(state = INITIAL_STATE, action) {
     }
 };
 
-export function onLogin(userCredentials) {
+export function onSignUp(userInfo) {
     return (dispatch, getState) => {
-        dispatch(loginRequest());
-        return AuthenticationService.signin(userCredentials)
+        dispatch(signUpRequest());
+        return AuthenticationService.signup(userInfo)
             .then(response => {
-                dispatch(loginRequestSuccess(response));
+                dispatch(signUpRequestSuccess(response));
             })
             .catch(error => {
                 console.log('There has been a problem with your fetch operation: ' + error.message);
-                dispatch(loginRequestFailed(error))
+                dispatch(signUpRequestFailed(error))
             });
     };
 }

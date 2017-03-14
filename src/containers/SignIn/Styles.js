@@ -48,7 +48,8 @@ export default StyleSheet.create({
         color: '#fff',
         borderRadius: 5,
         padding: 15,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontWeight: 'bold'
     },
 
     errorText: {

@@ -3,6 +3,7 @@
  * This class combines all the reducers into one
  */
 import { signInReducer } from "reducers/SignInReducer";
+import { signUpReducer } from "reducers/SignUpReducer";
 import { combineReducers } from "redux";
 
 const RESET_ERROR_MESSAGE = 'Reset Error Message';
@@ -24,7 +25,8 @@ function errorMessage(state = null, action) {
 
 const reducers = {
   errorMessage,
-  signInReducer
+  signInReducer,
+  signUpReducer
 }
 const rootReducer = combineReducers(reducers)
 export default rootReducer;

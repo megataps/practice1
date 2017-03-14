@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+    container: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: null,
@@ -45,7 +45,15 @@ export default StyleSheet.create({
         color: '#fff',
         borderRadius: 5,
         padding: 15,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontWeight: 'bold'
     },
-    
+
+    errorText: {
+        color: 'red',
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        lineHeight: 20
+    },
+
 });

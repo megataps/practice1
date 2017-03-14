@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'config/store';
 import SignInScreen from 'containers/SignIn/SignInScreen'
 import SignUpScreen from 'containers/SignUp/SignUpScreen'
+import MainScreen from 'containers/Main/MainScreen'
 
 import routes, { listRoutes } from 'config/routes';
 
@@ -21,8 +22,13 @@ const scenes = Actions.create(
             component={SignUpScreen}
             title="Sign Up"
             hideNavBar={false}
-            type={ActionConst.PUSH}
-        />
+            type={ActionConst.PUSH} />
+        <Scene
+            key="MainScene"
+            component={MainScreen}
+            title=""
+            hideNavBar={true}
+            type={ActionConst.REPLACE} />
     </Scene>
 );
 
@@ -43,30 +49,4 @@ export default class App extends React.Component {
             </Provider>
         );
     }
-
-    /*render() {
-        return (<Router>
-            <Scene key="root">
-                <Scene key="signin"
-                    renderTitle={false}
-                    component={SignIn}
-                    title=""
-                    initial={true}
-                    hideNavBar={true}
-                />
-                <Scene key="signup"
-                    component={SignUp}
-                    title=""
-                    hideNavBar={false}
-                    navigationBarStyle={
-                        {
-                            backgroundColor: 'transparent',
-                            borderBottomWidth: 0
-                        }
-                    }
-                    backButtonImage={require('practice1/src/assets/images/back.png')}
-                />
-            </Scene>
-        </Router>);
-    }*/
 }
