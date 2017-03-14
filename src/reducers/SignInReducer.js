@@ -1,4 +1,6 @@
 
+import AuthenticationService from 'network/AuthenticationService'
+
 const REQUEST = 'Request';
 const SUCCESS = 'Success';
 const FAILED = 'Failed';
@@ -68,6 +70,7 @@ const errorMsg = {
 	message: 'error has occured'
 }
 
+<<<<<<< HEAD:src/reducers/SignInReducer.js
 export function onLogin(userCredentials) {
 	if (userCredentials.username === 'test@gmail.com' && userCredentials.password === '123456') {
 		return loginRequestSuccess(userInfo);
@@ -95,3 +98,18 @@ export function onLogin(userCredentials) {
 //     });
 //   };
 // }
+=======
+export function login(userCredentials) {
+  return (dispatch, getState) => {
+    dispatch(loginRequest());
+	return AuthenticationService.signin(userCredentials)
+    .then(response => {
+      dispatch(loginRequestSuccess(response));
+    })
+    .catch(error => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+      dispatch(loginRequestFailed(error))
+    });
+  };
+}
+>>>>>>> origin/master:src/redux/signin.js

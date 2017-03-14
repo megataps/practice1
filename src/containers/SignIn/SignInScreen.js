@@ -8,7 +8,8 @@ import {
     TextInput,
     TouchableHighlight,
     Alert,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -27,9 +28,28 @@ class SignInScreen extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            email: '',
             password: ''
         };
+    }
+
+    checkToRenderLoading() {
+        if (this.props.loading) {
+            return (
+                <ActivityIndicator
+                    style={[styles.loader]}
+                    color='white'
+                    size='large' />
+            );
+        }
+        return (
+            <TouchableHighlight
+                style={styles.signInButton}
+                onPress={this.onSignInPress}
+                underlayColor='#43ff3366'>
+                <Text style={styles.button}>Sign In</Text>
+            </TouchableHighlight>
+        );
     }
 
     render() {
@@ -52,7 +72,7 @@ class SignInScreen extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
-                            onChangeText={(text) => this.setState({ username: text })}
+                            onChangeText={(text) => this.setState({ email: text })}
                             iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
                             placeHolder='Username' />
@@ -78,11 +98,20 @@ class SignInScreen extends Component {
                 </View>
 
                 <View style={styles.bottomBar}>
+<<<<<<< HEAD:src/containers/SignIn/SignInScreen.js
                     <TouchableHighlight style={styles.signInButton}
                         onPress={this.onSignInPress.bind(this)}
+=======
+                    <Text style={styles.errorText}>
+                        {this.props.error}
+                    </Text>
+                    {this.checkToRenderLoading()}
+                    {/*<TouchableHighlight style={styles.signInButton}
+                        onPress={this.onSignInPress}
+>>>>>>> origin/master:src/containers/SignIn/SignIn.js
                         underlayColor='#43ff3366'>
                         <Text style={styles.button}>Sign In</Text>
-                    </TouchableHighlight>
+                    </TouchableHighlight>*/}
 
                     <View style={
                         {
@@ -105,8 +134,14 @@ class SignInScreen extends Component {
     }
 
     onSignInPress() {
+<<<<<<< HEAD:src/containers/SignIn/SignInScreen.js
         this.props.onLogin({
             username: this.state.username,
+=======
+        // Alert.alert('username:' + this.state.email + 'password:' + this.state.password);
+        this.props.login({
+            email: this.state.email,
+>>>>>>> origin/master:src/containers/SignIn/SignIn.js
             password: this.state.password
         });
     }

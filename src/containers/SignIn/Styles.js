@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+    container: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: null,
@@ -40,7 +40,8 @@ export default StyleSheet.create({
     signInButton: {
         flex: 1,
         backgroundColor: '#ff3366',
-        marginTop: 50
+        marginTop: 30,
+        height: 40
     },
 
     button: {
@@ -49,5 +50,12 @@ export default StyleSheet.create({
         padding: 15,
         alignSelf: 'center'
     },
-    
+
+    errorText: {
+        color: 'red',
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        lineHeight: 20
+    },
+
 });
