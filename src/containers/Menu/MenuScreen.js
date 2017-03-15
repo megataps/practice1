@@ -18,20 +18,31 @@ class MenuScreen extends Component {
                 style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
 
-                {/*<Text style={styles.controlText}>Control Panel</Text>
                 <TouchableOpacity
-                    style={styles.button}
-                    onPress={closeDrawer}>
-                    <Text>Close Drawer</Text>
-                </TouchableOpacity>*/}
+                    style={styles.signInButton}
+                    onPress={closeDrawer}
+                    underlayColor='#43ff3366'>
+                    <Text style={styles.button}>Sign In</Text>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: 'gray', height: 0.5 }} />
+                <TouchableOpacity
+                    style={styles.signInButton}
+                    onPress={closeDrawer}
+                    underlayColor='#43ff3366'>
+                    <Text style={styles.button}>About</Text>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: 'gray', height: 0.5 }} />
+                <TouchableOpacity
+                    style={styles.signInButton}
+                    onPress={closeDrawer}
+                    underlayColor='#43ff3366'>
+                    <Text style={styles.button}>Logout</Text>
+                </TouchableOpacity>
+
             </Image>
         )
     }
 }
-
-// MenuScreen.propTypes = {
-//     closeDrawer: PropTypes.func.isRequired
-// };
 
 const styles = StyleSheet.create({
     container: {
@@ -42,12 +53,17 @@ const styles = StyleSheet.create({
     controlText: {
         color: 'white',
     },
+    signInButton: {
+        backgroundColor: '#ff3366',
+        height: 40,
+        justifyContent: 'center',
+    },
     button: {
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: 'black',
-        padding: 10,
-    }
+        color: '#fff',
+        alignSelf: 'center',
+        
+        fontWeight: 'bold'
+    },
 })
 //make this component available to the app
 export default MenuScreen;

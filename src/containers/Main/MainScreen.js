@@ -7,7 +7,7 @@ import HomeScreen from 'Home/HomeScreen';
 
 // create a component
 class MainScreen extends Component {
-state={
+  state = {
     drawerOpen: false,
     drawerDisabled: false,
   };
@@ -26,14 +26,14 @@ state={
           <MenuScreen closeDrawer={this.closeDrawer} />
         }
         acceptDoubleTap
-        styles={{main: {shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15}}}
+        styles={{ main: { shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15 } }}
         onOpen={() => {
           console.log('onopen')
-          this.setState({drawerOpen: true})
+          this.setState({ drawerOpen: true })
         }}
         onClose={() => {
           console.log('onclose')
-          this.setState({drawerOpen: false})
+          this.setState({ drawerOpen: false })
         }}
         captureGestures={false}
         tweenDuration={100}
@@ -45,7 +45,7 @@ state={
         closedDrawerOffset={() => 0}
         panOpenMask={0.5}
         negotiatePan
-        >
+      >
         <HomeScreen />
       </Drawer>
     )

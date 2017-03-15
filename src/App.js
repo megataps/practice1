@@ -5,6 +5,7 @@ import configureStore from 'config/store';
 import SignInScreen from 'containers/SignIn/SignInScreen'
 import SignUpScreen from 'containers/SignUp/SignUpScreen'
 import MainScreen from 'containers/Main/MainScreen'
+import UserProfileScreen from 'containers/Profile/UserProfileScreen'
 
 import routes, { listRoutes } from 'config/routes';
 
@@ -29,6 +30,13 @@ const scenes = Actions.create(
             title=""
             hideNavBar={true}
             type={ActionConst.REPLACE} />
+
+        <Scene
+            key="UserProfileScene"
+            component={UserProfileScreen}
+            title="User Profile"
+            hideNavBar={false}
+            type={ActionConst.PUSH} />
     </Scene>
 );
 
