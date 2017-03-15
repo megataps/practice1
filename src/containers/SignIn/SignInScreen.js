@@ -42,6 +42,7 @@ class SignInScreen extends Component {
                     size='large' />
             );
         }
+
         return (
             <TouchableHighlight
                 style={styles.signInButton}
@@ -52,17 +53,13 @@ class SignInScreen extends Component {
         );
     }
 
-    gotoHomeScreen() {
-        Actions.MainScene();
+    componentDidUpdate(){
+         if (this.props.user) {
+            Actions.MainScene();
+         }
     }
 
     render() {
-
-        if (this.props.user) {
-            Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
-            this.gotoHomeScreen();
-        }
-
         return (
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>

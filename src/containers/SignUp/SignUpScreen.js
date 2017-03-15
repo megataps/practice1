@@ -54,12 +54,13 @@ class SignUpScreen extends Component {
         );
     }
 
+    componentDidUpdate(){
+         if (this.props.user) {
+             Actions.pop();
+         }
+    }
+
     render() {
-
-        if (this.props.user) {
-            Alert.alert('Sign up Success');
-        }
-
         return (
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
