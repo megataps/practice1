@@ -38,13 +38,14 @@ export default StyleSheet.create({
     signInButton: {
         flex: 1,
         backgroundColor: '#ff3366',
-        marginTop: 50
+        justifyContent: 'center',
+        marginTop: 30,
+        height: 40
     },
 
     button: {
         color: '#fff',
         borderRadius: 5,
-        padding: 15,
         alignSelf: 'center',
         fontWeight: 'bold'
     },

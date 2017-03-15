@@ -8,15 +8,12 @@ export default StyleSheet.create({
         height: null,
     },
 
-    logo: {
-        flex: 1,
-    },
-
     inputForm: {
         flex: 2,
         alignItems: 'center',
         paddingLeft: 25,
         paddingRight: 25,
+        marginTop: 100,
     },
 
     input: {
@@ -29,31 +26,6 @@ export default StyleSheet.create({
         width: 1000,
         alignItems: 'center',
         backgroundColor: 'gray',
-    },
-
-    bottomBar: {
-        flex: 1,
-    },
-
-    signInButton: {
-        flex: 1,
-        backgroundColor: '#ff3366',
-        marginTop: 50
-    },
-
-    button: {
-        color: '#fff',
-        borderRadius: 5,
-        padding: 15,
-        alignSelf: 'center',
-        fontWeight: 'bold'
-    },
-
-    errorText: {
-        color: 'red',
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        lineHeight: 20
     },
 
 });

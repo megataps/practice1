@@ -52,11 +52,15 @@ class SignInScreen extends Component {
         );
     }
 
+    gotoHomeScreen() {
+        Actions.MainScene();
+    }
+
     render() {
 
         if (this.props.user) {
             Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
-            // Actions.MainScene();
+            this.gotoHomeScreen();
         }
 
         return (
@@ -92,7 +96,7 @@ class SignInScreen extends Component {
 
                     <View style={styles.verticalIndicator} />
 
-                    <TouchableOpacity style={{ marginTop: 10, alignSelf: 'flex-end' }}>
+                    <TouchableOpacity style={{ marginTop: 10, alignSelf: 'flex-end', backgroundColor: '#00000000' }}>
                         <Text style={{ color: 'white' }}>Forgot Password</Text>
                     </TouchableOpacity>
 
@@ -108,7 +112,8 @@ class SignInScreen extends Component {
                             paddingBottom: 20,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            flexDirection: 'row'
+                            flexDirection: 'row',
+                            backgroundColor: '#00000000'
                         }}>
                         <Text style={{ color: 'white' }}>Don't have an account?</Text>
                         <TouchableOpacity onPress={this.onSignUpPress.bind(this)}>
@@ -129,8 +134,7 @@ class SignInScreen extends Component {
     }
 
     onSignUpPress() {
-        // Actions.SignUpScene();
-        Actions.MainScene();
+        Actions.SignUpScene();
     }
 }
 

@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     TouchableHighlight,
     Alert,
-    ActivityIndicator
+    ActivityIndicator,
+    Platform
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -64,8 +65,13 @@ class SignUpScreen extends Component {
                 source={require('assets/images/bg_signin.png')}>
 
                 <View style={styles.logo}>
-
-                    <Text style={{ color: 'white', fontSize: 21, marginLeft: 15, marginTop: 40 }}>Sign Up </Text>
+                    <Text style={{
+                        color: 'white',
+                        backgroundColor: '#00000000',
+                        fontSize: 21,
+                        marginLeft: 15,
+                        marginTop: (Platform.OS === 'ios') ? 80 : 40
+                    }}>Sign Up </Text>
                 </View>
 
                 <View style={styles.inputForm}>
@@ -130,9 +136,9 @@ class SignUpScreen extends Component {
                         justifyContent: 'center',
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ color: 'white' }}>Already have an account? </Text>
+                        <Text style={{ color: 'white', backgroundColor: '#00000000', }}>Already have an account? </Text>
                         <TouchableOpacity onPress={this.onSignInPress.bind(this)}>
-                            <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign In</Text>
+                            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#00000000', }}> Sign In</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -142,8 +148,6 @@ class SignUpScreen extends Component {
     }
 
     onSignUpPress() {
-        // Alert.alert('Sign In pressed');
-        // alertDialg('Sign In pressed');
         this.props.onSignUp({
             fullName: this.state.fullName,
             email: this.state.email,
@@ -154,7 +158,7 @@ class SignUpScreen extends Component {
     }
 
     onSignInPress() {
-        alertDialg('Sign In pressed');
+        Actions.pop();
     }
 }
 

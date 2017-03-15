@@ -31,35 +31,10 @@ class UserProfileScreen extends Component {
         };
     }
 
-    checkToRenderLoading() {
-        if (this.props.loading) {
-            return (
-                <ActivityIndicator
-                    style={[styles.loader]}
-                    color='white'
-                    size='large' />
-            );
-        }
-        return (
-            <TouchableHighlight
-                style={styles.signInButton}
-                onPress={this.onSignUpPress.bind(this)}
-                underlayColor='#43ff3366'>
-                <Text style={styles.button}>Join</Text>
-            </TouchableHighlight>
-        );
-    }
-
-
     render() {
         return (
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
-
-                <View style={styles.logo}>
-
-                    <Text style={{ color: 'white', fontSize: 21, marginLeft: 15, marginTop: 40 }}>Sign Up </Text>
-                </View>
 
                 <View style={styles.inputForm}>
 
@@ -87,17 +62,6 @@ class UserProfileScreen extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
-                            onChangeText={(text) => this.setState({ password: text })}
-                            iconUrI={require('assets/images/password.png')}
-                            isPassword={true}
-                            placeHolder='Password' />
-                    </View>
-
-                    <View style={styles.verticalIndicator}>
-                    </View>
-
-                    <View style={styles.input}>
-                        <IconTextInput
                             onChangeText={(text) => this.setState({ birthday: text })}
                             iconUrI={require('assets/images/birthday.png')}
                             isPassword={false}
@@ -110,37 +74,13 @@ class UserProfileScreen extends Component {
 
                 <View style={styles.bottomBar}>
 
-                    <Text style={styles.errorText}>
-                        {this.props.error}
-                    </Text>
-
-                    {this.checkToRenderLoading()}
-
-                    <View style={{
-                        flex: 1,
-                        paddingBottom: 20,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'row'
-                    }}>
-                        <Text style={{ color: 'white' }}>Already have an account? </Text>
-                        <TouchableOpacity onPress={this.onSignInPress.bind(this)}>
-                            <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign In</Text>
-                        </TouchableOpacity>
-                    </View>
+                  
                 </View>
 
             </Image>
         );
     }
 
-    onSignUpPress() {
-        Alert.alert('Sign In pressed');
-    }
-
-    onSignInPress() {
-        alertDialg('Sign In pressed');
-    }
 }
 
 //make this component available to the app

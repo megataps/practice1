@@ -21,7 +21,7 @@ const scenes = Actions.create(
         <Scene
             key="SignUpScene"
             component={SignUpScreen}
-            title="Sign Up"
+            title=""
             hideNavBar={false}
             type={ActionConst.PUSH} />
         <Scene
@@ -34,7 +34,7 @@ const scenes = Actions.create(
         <Scene
             key="UserProfileScene"
             component={UserProfileScreen}
-            title="User Profile"
+            title=""
             hideNavBar={false}
             type={ActionConst.PUSH} />
     </Scene>
