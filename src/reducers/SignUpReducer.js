@@ -43,7 +43,7 @@ export function signUpReducer(state = INITIAL_STATE, action) {
                 ...state,
                 loading: false,
                 error: '',
-                user: action.payload
+                response: action.payload
             };
         case SIGN_UP_FAILED:
             console.log(action.error);

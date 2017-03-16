@@ -55,7 +55,7 @@ class SignUpScreen extends Component {
     }
 
     componentDidUpdate(){
-         if (this.props.user) {
+         if (this.props.result) {
              Actions.pop();
          }
     }
@@ -171,7 +171,7 @@ function mapStateToProps(state) {
     return {
         error: state.signUpReducer.error,
         loading: state.signUpReducer.loading,
-        user: state.signUpReducer.user
+        result: state.signUpReducer.response
     }
 }
 

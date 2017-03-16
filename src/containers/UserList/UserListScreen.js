@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { getUserList } from 'reducers/UserListReducer';
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
@@ -91,18 +93,23 @@ class UserListScreen extends Component {
 
                 renderForeground={() => (
                     <View key="parallax-header" style={styles.parallaxHeader}>
-                        <Text style={styles.sectionSpeakerText}>Mary - Manager</Text>
+                        <Text style={styles.sectionSpeakerText}>{this.props.user.full_name}</Text>
                     </View>
                 )}
 
                 renderStickyHeader={() => (
                     <View key="sticky-header" style={styles.stickySection}>
-                        <Text style={styles.stickySectionText}>Mary - Manager</Text>
+                        <Text style={styles.stickySectionText}>FullName</Text>
                     </View>
                 )}
 
             />
         );
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        // perform any preparations for an upcoming update
+        // this.props.getUserList(this.state.user.token);
     }
 
     render() {
@@ -187,5 +194,26 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
-//make this component available to the app
-export default UserListScreen;
+
+// Map Redux state to component props
+function mapStateToProps(state) {
+    console.log(state.userSessionReducer.user);
+    return {
+        error: state.getUserListReducer.error,
+        loading: state.getUserListReducer.loading,
+        userList: state.getUserListReducer.userList,
+        user: state.userSessionReducer.user
+    }
+}
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+    return {
+        getUserList: (headers) => dispatch(getUserList(headers))
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UserListScreen);

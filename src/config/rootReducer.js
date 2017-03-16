@@ -4,6 +4,9 @@
  */
 import { signInReducer } from "reducers/SignInReducer";
 import { signUpReducer } from "reducers/SignUpReducer";
+import { userSessionReducer } from 'reducers/UserSessionReducer';
+import { getUserListReducer } from 'reducers/UserListReducer';
+
 import { combineReducers } from "redux";
 
 const RESET_ERROR_MESSAGE = 'Reset Error Message';
@@ -26,7 +29,9 @@ function errorMessage(state = null, action) {
 const reducers = {
   errorMessage,
   signInReducer,
-  signUpReducer
+  signUpReducer,
+  userSessionReducer,
+  getUserListReducer
 }
 const rootReducer = combineReducers(reducers)
 export default rootReducer;

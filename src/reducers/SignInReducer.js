@@ -1,9 +1,12 @@
 
 import AuthenticationService from 'network/AuthenticationService'
+import { saveUserSession } from 'reducers/UserSessionReducer';
 
 const SIGN_IN_REQUEST = 'Sign_In_Request';
 const SIGN_IN_SUCCESS = 'Sign_In_Success';
 const SIGN_IN_FAILED = 'Sign_In_Failed';
+
+
 
 function loginRequest() {
     return {
@@ -63,6 +66,7 @@ export function onLogin(userCredentials) {
         return AuthenticationService.signin(userCredentials)
             .then(response => {
                 dispatch(loginRequestSuccess(response));
+                dispatch(saveUserSession(response));
             })
             .catch(error => {
                 console.log('There has been a problem with your fetch operation: ' + error.message);
