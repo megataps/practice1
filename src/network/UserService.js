@@ -1,3 +1,4 @@
+const BASE_URL = 'http://fixiesvn.azurewebsites.net/api/';
 
 export default class UserService {
   //Return an promise
@@ -14,6 +15,10 @@ export default class UserService {
       if (headers.hasOwnProperty(key)) {
         defaulHeaders.append(key, headers[key]);
       }
+    }
+
+    for (let key1 in defaulHeaders) {
+       console.log(key1.name + ">>>>" + defaulHeaders[key1].value);
     }
 
     let myInit = {

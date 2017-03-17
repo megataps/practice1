@@ -23,21 +23,30 @@ class UserListScreen extends Component {
 
     constructor(props) {
         super(props);
+
+        // this.state = {
+        //     dataSource: new ListView.DataSource({
+        //         rowHasChanged: (r1, r2) => r1 !== r2
+        //     }).cloneWithRows([
+        //         'Simplicity Matters',
+        //         'Hammock Driven Development',
+        //         'Value of Values',
+        //         'Are We There Yet?',
+        //         'The Language of the System',
+        //         'Design, Composition, and Performance',
+        //         'Clojure core.async',
+        //         'The Functional Database',
+        //         'Deconstructing the Database',
+        //         'Hammock Driven Development',
+        //         'Value of Values'
+        //     ])
+        // };
+
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (r1, r2) => r1 !== r2
             }).cloneWithRows([
                 'Simplicity Matters',
-                'Hammock Driven Development',
-                'Value of Values',
-                'Are We There Yet?',
-                'The Language of the System',
-                'Design, Composition, and Performance',
-                'Clojure core.async',
-                'The Functional Database',
-                'Deconstructing the Database',
-                'Hammock Driven Development',
-                'Value of Values'
             ])
         };
     }
@@ -99,7 +108,7 @@ class UserListScreen extends Component {
 
                 renderStickyHeader={() => (
                     <View key="sticky-header" style={styles.stickySection}>
-                        <Text style={styles.stickySectionText}>FullName</Text>
+                        <Text style={styles.stickySectionText}>{this.props.user.full_name}</Text>
                     </View>
                 )}
 
@@ -107,12 +116,39 @@ class UserListScreen extends Component {
         );
     }
 
-    componentWillUpdate(nextProps, nextState) {
+    componentDidMount(nextProps, nextState) {
         // perform any preparations for an upcoming update
-        // this.props.getUserList(this.state.user.token);
+        this.props.getUserList(this.props.user.token);
+    }
+
+    _getListViewData(userList) {
+        let data = {};
+        let sectionIds = [];
+
+        userList.map((user) => {
+            let section = userList.full_name.charAt(0);
+            if (sectionIds.indexOf(section) === -1) {
+                sectionIds.push(section);
+                data[section] = [];
+            }
+            data[section].push(user);
+        });
+
+        return { data, sectionIds };
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.userList !== this.props.userList) {
+            let { data, sectionIds } = this._getListViewData(nextProps.userList);
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRowsAndSections(data, sectionIds)
+            })
+        }
     }
 
     render() {
+
         return (
             <ListView
                 ref="ListView"
@@ -197,7 +233,6 @@ const styles = StyleSheet.create({
 
 // Map Redux state to component props
 function mapStateToProps(state) {
-    console.log(state.userSessionReducer.user);
     return {
         error: state.getUserListReducer.error,
         loading: state.getUserListReducer.loading,

@@ -12,6 +12,7 @@ function getUserListRequest() {
 }
 
 function getUserListRequestSuccess(json) {
+    console.log("getUserListRequestSuccess >>>> json >>> " + json);
     return {
         type: USER_LIST_SUCCESS,
         payload: json
@@ -58,7 +59,7 @@ export function getUserListReducer(state = INITIAL_STATE, action) {
 };
 
 export function getUserList(accessToken) {
-    console.log(accessToken);
+    console.log("accessToken >>>> " + accessToken);
     return (dispatch, getState) => {
         dispatch(getUserListRequest());
          let headers = new Headers();

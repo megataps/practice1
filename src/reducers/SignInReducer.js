@@ -65,8 +65,8 @@ export function onLogin(userCredentials) {
         dispatch(loginRequest());
         return AuthenticationService.signin(userCredentials)
             .then(response => {
-                dispatch(loginRequestSuccess(response));
                 dispatch(saveUserSession(response));
+                dispatch(loginRequestSuccess(response));
             })
             .catch(error => {
                 console.log('There has been a problem with your fetch operation: ' + error.message);
