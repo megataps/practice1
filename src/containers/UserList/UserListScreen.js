@@ -24,48 +24,27 @@ class UserListScreen extends Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        //     dataSource: new ListView.DataSource({
-        //         rowHasChanged: (r1, r2) => r1 !== r2
-        //     }).cloneWithRows([
-        //         'Simplicity Matters',
-        //         'Hammock Driven Development',
-        //         'Value of Values',
-        //         'Are We There Yet?',
-        //         'The Language of the System',
-        //         'Design, Composition, and Performance',
-        //         'Clojure core.async',
-        //         'The Functional Database',
-        //         'Deconstructing the Database',
-        //         'Hammock Driven Development',
-        //         'Value of Values'
-        //     ])
-        // };
-
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (r1, r2) => r1 !== r2
-            }).cloneWithRows([
-                'Simplicity Matters',
-            ])
+            }).cloneWithRows([])
         };
     }
 
-    pressRow(rowID) {
-        // Alert.alert('item pressed');
-        Actions.UserProfileScene();
+    pressRow(rowData) {
+        Actions.UserProfileScene({userData: rowData});
     }
 
     renderRow(rowData) {
         return (
 
             <TouchableHighlight onPress={() => {
-                this.pressRow();
+                this.pressRow(rowData);
                 {/*highlightRow(sectionID, rowID);*/ }
             }}>
                 <View key={rowData} style={styles.row}>
                     <Text style={styles.rowText}>
-                        {rowData}
+                        {rowData.full_name}
                     </Text>
                 </View>
             </TouchableHighlight>
@@ -126,7 +105,7 @@ class UserListScreen extends Component {
         let sectionIds = [];
 
         userList.map((user) => {
-            let section = userList.full_name.charAt(0);
+            let section = userList.full_name;
             if (sectionIds.indexOf(section) === -1) {
                 sectionIds.push(section);
                 data[section] = [];
@@ -140,9 +119,9 @@ class UserListScreen extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.userList !== this.props.userList) {
-            let { data, sectionIds } = this._getListViewData(nextProps.userList);
+            let data = nextProps.userList
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRowsAndSections(data, sectionIds)
+                dataSource: this.state.dataSource.cloneWithRows(data)
             })
         }
     }
@@ -155,6 +134,7 @@ class UserListScreen extends Component {
                 style={styles.container}
                 dataSource={this.state.dataSource}
                 renderRow={(rowData) => this.renderRow(rowData)}
+                enableEmptySections={true}
                 renderScrollComponent={props => this.renderParallaxScrollView()}
             />
         );

@@ -31,6 +31,7 @@ class UserProfileScreen extends Component {
         };
     }
 
+
     render() {
         return (
             <Image style={styles.container}
@@ -43,7 +44,7 @@ class UserProfileScreen extends Component {
                             onChangeText={(text) => this.setState({ fullName: text })}
                             iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
-                            placeHolder='Name' />
+                            placeHolder={this.props.userData.full_name} />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -54,7 +55,7 @@ class UserProfileScreen extends Component {
                             onChangeText={(text) => this.setState({ email: text })}
                             iconUrI={require('assets/images/email.png')}
                             isPassword={false}
-                            placeHolder='Email' />
+                            placeHolder={this.props.userData.email} />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -65,7 +66,7 @@ class UserProfileScreen extends Component {
                             onChangeText={(text) => this.setState({ birthday: text })}
                             iconUrI={require('assets/images/birthday.png')}
                             isPassword={false}
-                            placeHolder='Birthday' />
+                            placeHolder={this.props.userData.birthday} />
                     </View>
 
                     <View style={styles.verticalIndicator} />

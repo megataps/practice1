@@ -32,6 +32,9 @@ const INITIAL_STATE = {
 }
 
 export function getUserListReducer(state = INITIAL_STATE, action) {
+
+    console.log("action.payload >>>>:" + action.payload);
+
     switch (action.type) {
         case USER_LIST_REQUEST:
             return {
