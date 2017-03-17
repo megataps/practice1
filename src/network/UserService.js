@@ -2,32 +2,22 @@ const BASE_URL = 'http://fixiesvn.azurewebsites.net/api/';
 
 export default class UserService {
   //Return an promise
-  static getUserList(headers) {
+  static getUserList(token) {
     const url = `${BASE_URL}trainees`;
-    return UserService.postData(url, headers);
+    return UserService.getData(url, token);
   }
 
-  static postData(url, headers, body) {
+  static getData(url, token) {
     let defaulHeaders = new Headers();
     defaulHeaders.append('Content-Type', 'application/json');
     defaulHeaders.append('charset', 'utf-8');
-    for (let key in headers) {
-      if (headers.hasOwnProperty(key)) {
-        defaulHeaders.append(key, headers[key]);
-      }
-    }
-
-    for (let key1 in defaulHeaders) {
-       console.log(key1.name + ">>>>" + defaulHeaders[key1].value);
-    }
-
+    defaulHeaders.append('x-access-token', token);
+   
     let myInit = {
-      method: 'POST',
+      method: 'GET',
       headers: defaulHeaders
     };
-    if (body) {
-      myInit['body'] = JSON.stringify(body);
-    }
+
     let request = new Request(url);
     return fetch(request, myInit)
       .then(response => {

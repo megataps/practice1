@@ -62,9 +62,7 @@ export function getUserList(accessToken) {
     console.log("accessToken >>>> " + accessToken);
     return (dispatch, getState) => {
         dispatch(getUserListRequest());
-         let headers = new Headers();
-        headers.append('x-access-token', accessToken);
-        return UserListService.getUserList(headers)
+        return UserListService.getUserList(accessToken)
             .then(response => {
                 dispatch(getUserListRequestSuccess(response));
             })
