@@ -45,9 +45,9 @@ export default StyleSheet.create({
 
     button: {
         color: '#fff',
-        borderRadius: 5,
         alignSelf: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        backgroundColor: '#00000000',
     },
 
     errorText: {

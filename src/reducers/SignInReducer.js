@@ -6,8 +6,6 @@ const SIGN_IN_REQUEST = 'Sign_In_Request';
 const SIGN_IN_SUCCESS = 'Sign_In_Success';
 const SIGN_IN_FAILED = 'Sign_In_Failed';
 
-
-
 function loginRequest() {
     return {
         type: SIGN_IN_REQUEST
