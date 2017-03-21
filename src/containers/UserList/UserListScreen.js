@@ -32,7 +32,7 @@ class UserListScreen extends Component {
     }
 
     pressRow(rowData) {
-        Actions.UserProfileScene({userData: rowData});
+        Actions.UserProfileScene({ userData: rowData });
     }
 
     renderRow(rowData) {
@@ -57,7 +57,7 @@ class UserListScreen extends Component {
         return (
             <ParallaxScrollView
                 onScroll={onScroll}
-                headerBackgroundColor="#333"
+                headerBackgroundColor="#00000000"
                 stickyHeaderHeight={STICKY_HEADER_HEIGHT}
                 parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
                 backgroundSpeed={10}
@@ -69,6 +69,7 @@ class UserListScreen extends Component {
                                 height: 200
                             }}
                             source={require('assets/images/header.png')} />
+
                         <View style={{
                             position: 'absolute',
                             top: 0,
@@ -76,6 +77,12 @@ class UserListScreen extends Component {
                             backgroundColor: 'rgba(0,0,0,.4)',
                             height: PARALLAX_HEADER_HEIGHT
                         }} />
+
+                            {/*<Image
+                                style={{ width: 30, height: 24, marginTop: 27, marginLeft: 10 }}
+                                source={require('assets/images/menu.png')} />
+                        </View>*/}
+
                     </View>
                 )}
 
@@ -151,7 +158,8 @@ const STICKY_HEADER_HEIGHT = 44;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black'
+        backgroundColor: '#000000',
+
     },
     background: {
         position: 'absolute',

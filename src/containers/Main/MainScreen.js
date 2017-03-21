@@ -1,9 +1,10 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import MenuScreen from 'Menu/MenuScreen';
 import Drawer from 'react-native-drawer';
 import HomeScreen from 'Home/HomeScreen';
+import { Actions, DefaultRenderer } from 'react-native-router-flux';
 
 // create a component
 class MainScreen extends Component {
@@ -11,19 +12,44 @@ class MainScreen extends Component {
     drawerOpen: false,
     drawerDisabled: false,
   };
+
   closeDrawer = () => {
     this._drawer.close()
+    // Alert.alert('Closing.......');
   };
+
   openDrawer = () => {
     this._drawer.open()
   };
+
+  onLogout = () => {
+    Alert.alert('Logout.......');
+  };
+
+  onProfile = () => {
+    Actions.HomeScene();
+    this._drawer.close()
+  };
+
+  onAbout = () => {
+    Actions.AboutScene();
+    this._drawer.close()
+  };
+
   render() {
+    const state = this.props.navigationState;
+    const children = state.children;
+
     return (
       <Drawer
         ref={(ref) => this._drawer = ref}
         type="static"
         content={
-          <MenuScreen closeDrawer={this.closeDrawer} />
+          <MenuScreen
+            closeDrawer={this.closeDrawer}
+            onLogout={this.onLogout}
+            onProfile={this.onProfile}
+            onAbout={this.onAbout} />
         }
         acceptDoubleTap
         styles={{ main: { shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15 } }}
@@ -46,7 +72,7 @@ class MainScreen extends Component {
         panOpenMask={0.5}
         negotiatePan
       >
-        <HomeScreen />
+         <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate} />
       </Drawer>
     )
   }

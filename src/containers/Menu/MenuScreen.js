@@ -6,63 +6,86 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 
 // create a component
 class MenuScreen extends Component {
+
     render() {
-        let { closeDrawer } = this.props
+
+        // let { closeDrawer } = this.props
+
         return (
-            <Image
-                style={styles.container}
-                source={require('assets/images/bg_signin.png')}>
+            <View
+                style={styles.container}>
 
                 <TouchableOpacity
-                    style={styles.signInButton}
-                    onPress={closeDrawer}
+                    onPress={this.props.closeDrawer}
                     underlayColor='#43ff3366'>
-                    <Text style={styles.button}>Sign In</Text>
+                    <Image
+                        style={styles.closeIcon}
+                        source={require('assets/images/close.png')} />
                 </TouchableOpacity>
-                <View style={{ backgroundColor: 'gray', height: 0.5 }} />
+
+                <TouchableOpacity
+                    style={[styles.signInButton, { marginTop: 0, }]}
+                    onPress={this.props.onProfile}
+                    underlayColor='#43ff3366'>
+                    <Text style={styles.button}>User Profile</Text>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: '#901D1D26', height: 0.4 }} />
                 <TouchableOpacity
                     style={styles.signInButton}
-                    onPress={closeDrawer}
+                    onPress={this.props.onAbout}
                     underlayColor='#43ff3366'>
                     <Text style={styles.button}>About</Text>
                 </TouchableOpacity>
-                <View style={{ backgroundColor: 'gray', height: 0.5 }} />
+                <View style={{ backgroundColor: '#901D1D26', height: 0.4 }} />
                 <TouchableOpacity
                     style={styles.signInButton}
-                    onPress={closeDrawer}
+                    onPress={this.props.onLogout}
                     underlayColor='#43ff3366'>
                     <Text style={styles.button}>Logout</Text>
                 </TouchableOpacity>
 
-            </Image>
+            </View>
         )
     }
 }
+
+MenuScreen.propTypes = {
+  closeDrawer: PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: null,
         height: null,
+        backgroundColor: 'white'
     },
-    controlText: {
-        color: 'white',
+
+    closeIcon: {
+        padding: Platform.OS === 'ios' ? 10 : 0,
+        width: Platform.OS === 'ios' ? 10 : 25,
+        height: Platform.OS === 'ios' ? 10 : 25,
+        marginTop: Platform.OS === 'ios' ? 30 : 20,
+        marginBottom: Platform.OS === 'ios' ? 20 : 20,
+        marginLeft: 10,
     },
+
     signInButton: {
-        backgroundColor: '#ff3366',
+        backgroundColor: '#F6F6F6',
         height: 40,
         justifyContent: 'center',
     },
     button: {
-        color: '#fff',
-        alignSelf: 'center',
-        
-        fontWeight: 'bold'
+        color: '#1D1D26',
+        marginLeft: 20,
+        fontFamily: 'Avenir',
+        fontWeight: '100'
     },
 })
 //make this component available to the app
