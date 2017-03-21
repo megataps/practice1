@@ -3,6 +3,7 @@ import { Actions, Scene, Router, ActionConst } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configureStore from 'config/store';
 import SignInScreen from 'containers/SignIn/SignInScreen';
+import ForgotPasswordScreen from 'containers/SignIn/ForgotPasswordScreen';
 import SignUpScreen from 'containers/SignUp/SignUpScreen';
 import MainScreen from 'containers/Main/MainScreen';
 import UserProfileScreen from 'containers/Profile/UserProfileScreen';
@@ -20,7 +21,17 @@ const scenes = Actions.create(
             component={SignInScreen}
             initial={true}
             hideNavBar={false}
+            type={ActionConst.REPLACE}
         />
+
+        <Scene
+            key="ForgotPasswordScene"
+            component={ForgotPasswordScreen}
+            title=""
+            hideNavBar={false}
+            type={ActionConst.PUSH}
+        />
+
         <Scene
             key="SignUpScene"
             component={SignUpScreen}
@@ -76,7 +87,7 @@ export default class App extends React.Component {
                     titleStyle={{ color: 'white' }}
                     backButtonImage={require('assets/images/back.png')}
                     navigationBarStyle={{ backgroundColor: 'transparent', borderBottomColor: 'transparent' }}
-                    leftButtonIconStyle={{paddingLeft: 0, marginLeft: 0, width: 20, height: 20}}
+                    leftButtonIconStyle={{ paddingLeft: 0, marginLeft: 0, width: 20, height: 20 }}
                     drawerImage={require('assets/images/menu.png')}
                 />
             </Provider>

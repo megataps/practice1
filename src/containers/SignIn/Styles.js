@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
+import Metrics from 'config/metrics'; 
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        
         width: null,
-        height: null,
+        height: Metrics.screenHeight,
     },
 
     logo: {
@@ -38,11 +38,9 @@ export default StyleSheet.create({
     },
 
     signInButton: {
-        flex: 1,
         backgroundColor: '#ff3366',
         justifyContent: 'center',
-        marginTop: 30,
-        height: 40
+        height: 44
     },
 
     button: {

@@ -23,7 +23,9 @@ class MainScreen extends Component {
   };
 
   onLogout = () => {
-    Alert.alert('Logout.......');
+    // Alert.alert('Logout.......');
+    Actions.SignInScene();
+    this._drawer.close()
   };
 
   onProfile = () => {

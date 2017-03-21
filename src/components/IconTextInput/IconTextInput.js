@@ -17,16 +17,21 @@ class IconTextInput extends Component {
                     style={styles.input}
                     underlineColorAndroid={Colors.transparent}
                     autoCorrect={false}
+                    keyboardType={this.props.keyboardType}
                     secureTextEntry={this.props.isPassword}
                     placeholderTextColor={Colors.white}
-                    placeholder={this.props.placeHolder} />
+                    returnKeyType={this.props.returnKey}
+                    placeholder={this.props.placeHolder}
+                    foc
+                     />
             </View>
         );
     }
 }
 
 IconTextInput.propTypes = {
-  iconUrI: PropTypes.number.isRequired
+  iconUrI: PropTypes.number.isRequired,
+  returnKey: PropTypes.string.isRequired
 };
 
 export default IconTextInput;

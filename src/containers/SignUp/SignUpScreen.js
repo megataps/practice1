@@ -9,7 +9,8 @@ import {
     TouchableHighlight,
     Alert,
     ActivityIndicator,
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -62,6 +63,8 @@ class SignUpScreen extends Component {
 
     render() {
         return (
+                        <ScrollView
+                scrollEnabled={false}>
             <Image style={styles.container}
                 source={require('assets/images/bg_signin.png')}>
 
@@ -82,6 +85,7 @@ class SignUpScreen extends Component {
                             onChangeText={(text) => this.setState({ fullName: text })}
                             iconUrI={require('assets/images/user_name.png')}
                             isPassword={false}
+                            returnKey='next'
                             placeHolder='Name' />
                     </View>
 
@@ -93,6 +97,8 @@ class SignUpScreen extends Component {
                             onChangeText={(text) => this.setState({ email: text })}
                             iconUrI={require('assets/images/email.png')}
                             isPassword={false}
+                            returnKey='next'
+                            keyboardType='email-address'
                             placeHolder='Email' />
                     </View>
 
@@ -104,6 +110,7 @@ class SignUpScreen extends Component {
                             onChangeText={(text) => this.setState({ password: text })}
                             iconUrI={require('assets/images/password.png')}
                             isPassword={true}
+                            returnKey='next'
                             placeHolder='Password' />
                     </View>
 
@@ -115,6 +122,7 @@ class SignUpScreen extends Component {
                             onChangeText={(text) => this.setState({ birthday: text })}
                             iconUrI={require('assets/images/birthday.png')}
                             isPassword={false}
+                            returnKey='done'
                             placeHolder='Birthday' />
                     </View>
 
@@ -145,6 +153,7 @@ class SignUpScreen extends Component {
                 </View>
 
             </Image>
+            </ScrollView>
         );
     }
 

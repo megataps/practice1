@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    ScrollView,
     Text,
     Image,
     TextInput,
@@ -53,74 +54,82 @@ class SignInScreen extends Component {
         );
     }
 
-    componentDidUpdate(){
-         if (this.props.user) {
+    componentDidUpdate() {
+        if (this.props.user) {
             Actions.MainScene();
-         }
+        }
     }
 
     render() {
         return (
-            <Image style={styles.container}
-                source={require('assets/images/bg_signin.png')}>
-
-                <View style={styles.logo}>
-                    <CircleImageView
-                        iconUrI={require('assets/images/check_red.png')}
-                    />
-                </View>
-
-                <View style={styles.inputForm}>
-
-                    <View style={styles.input}>
-                        <IconTextInput
-                            onChangeText={(text) => this.setState({ email: text })}
-                            iconUrI={require('assets/images/email.png')}
-                            isPassword={false}
-                            placeHolder='Email' />
+            <ScrollView
+                scrollEnabled={false}>
+                <Image style={styles.container}
+                    source={require('assets/images/bg_signin.png')}>
+                    <View style={styles.logo}>
+                        <CircleImageView
+                            iconUrI={require('assets/images/check_red.png')}
+                        />
                     </View>
 
-                    <View style={styles.verticalIndicator}>
+                    <View style={styles.inputForm}>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                onChangeText={(text) => this.setState({ email: text })}
+                                iconUrI={require('assets/images/email.png')}
+                                isPassword={false}
+                                keyboardType='email-address'
+                                returnKey='next'
+                                placeHolder='Email' />
+                        </View>
+
+                        <View style={styles.verticalIndicator}>
+                        </View>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                ref='password'
+                                onChangeText={(text) => this.setState({ password: text })}
+                                iconUrI={require('assets/images/password.png')}
+                                isPassword={true}
+                                returnKey='done'
+                                placeHolder='Password'
+                                onSubmitEditing={this.onSignInPress.bind(this)} />
+                        </View>
+
+                        <View style={styles.verticalIndicator} />
+
+                        <TouchableOpacity style={{ marginTop: 10, alignSelf: 'flex-end', backgroundColor: '#00000000' }}
+                            onPress={this.onForgotPasswordPress.bind(this)}>
+                            <Text style={{ color: 'white' }}>Forgot Password</Text>
+                        </TouchableOpacity>
+
                     </View>
 
-                    <View style={styles.input}>
-                        <IconTextInput
-                            onChangeText={(text) => this.setState({ password: text })}
-                            iconUrI={require('assets/images/password.png')}
-                            isPassword={true}
-                            placeHolder='Password' />
-                    </View>
-
-                    <View style={styles.verticalIndicator} />
-
-                    <TouchableOpacity style={{ marginTop: 10, alignSelf: 'flex-end', backgroundColor: '#00000000' }}>
-                        <Text style={{ color: 'white' }}>Forgot Password</Text>
-                    </TouchableOpacity>
-
-                </View>
-
-                <View style={styles.bottomBar}>
-                    <Text style={styles.errorText}>
-                        {this.props.error}
-                    </Text>
-                    {this.checkToRenderLoading()}
-                    <View style={{
+                    <View style={styles.bottomBar}>
+                        <Text style={styles.errorText}>
+                            {this.props.error}
+                        </Text>
+                        {this.checkToRenderLoading()}
+                        <View style={{
                             flex: 1,
-                            paddingBottom: 20,
+                            paddingBottom: 10,
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'row',
                             backgroundColor: '#00000000'
                         }}>
-                        <Text style={{ color: 'white' }}>Don't have an account?</Text>
-                        <TouchableOpacity onPress={this.onSignUpPress.bind(this)}>
-                            <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign Up</Text>
-                        </TouchableOpacity>
+                            <Text style={{ color: 'white' }}>Don't have an account?</Text>
+                            <TouchableOpacity onPress={this.onSignUpPress.bind(this)}>
+                                <Text style={{ color: 'white', fontWeight: 'bold' }}> Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
 
-                </View>
-
-            </Image>);
+                </Image>
+            </ScrollView>);
     }
 
     onSignInPress() {
@@ -130,8 +139,17 @@ class SignInScreen extends Component {
         });
     }
 
+    onForgotPasswordPress() {
+        Actions.ForgotPasswordScene();
+    }
+
     onSignUpPress() {
         Actions.SignUpScene();
+    }
+
+    focusNextField(nextField) {
+        // this.refs[nextField].focus();
+        Alert.alert(nextField);
     }
 }
 
