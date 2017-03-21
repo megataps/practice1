@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
 
     closeIcon: {
         padding: Platform.OS === 'ios' ? 10 : 0,
-        width: Platform.OS === 'ios' ? 10 : 25,
-        height: Platform.OS === 'ios' ? 10 : 25,
+        width: Platform.OS === 'ios' ? 10 : 20,
+        height: Platform.OS === 'ios' ? 10 : 20,
         marginTop: Platform.OS === 'ios' ? 30 : 20,
         marginBottom: Platform.OS === 'ios' ? 20 : 20,
         marginLeft: 10,

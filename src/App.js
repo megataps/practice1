@@ -33,24 +33,24 @@ const scenes = Actions.create(
             component={MainScreen}
             title=""
             hideNavBar={false}
-            leftButtonImage={require('assets/images/menu.png')}
-            onLeft={() => { }}
             type={ActionConst.REPLACE}>
             <Scene
-                key="HomeScene"
-                component={HomeScreen}
-                title=""
-                type={ActionConst.REPLACE}
-                hideNavBar={false} />
+                key="drawerRoot">
+                <Scene
+                    key="HomeScene"
+                    component={HomeScreen}
+                    title=""
+                    type={ActionConst.REPLACE}
+                    hideNavBar={false} />
 
-            <Scene
-                key="AboutScene"
-                component={AboutScreen}
-                title=""
-                type={ActionConst.REPLACE}
-                hideNavBar={false} />
+                <Scene
+                    key="AboutScene"
+                    component={AboutScreen}
+                    title=""
+                    type={ActionConst.REPLACE}
+                    hideNavBar={false} />
+            </Scene>
         </Scene>
-
         <Scene
             key="UserProfileScene"
             component={UserProfileScreen}
@@ -61,13 +61,6 @@ const scenes = Actions.create(
 
     </Scene>
 );
-
-sidebarButton = () => (
-    <TouchableHighlight onPress={() => { Actions.refresh({ key: 'drawer', open: true }); }}>
-        <Image source={require('assets/images/menu.png')} />
-    </TouchableHighlight>
-);
-
 
 export default class App extends React.Component {
 
@@ -82,13 +75,11 @@ export default class App extends React.Component {
                     scenes={scenes}
                     titleStyle={{ color: 'white' }}
                     backButtonImage={require('assets/images/back.png')}
-                    navigationBarStyle={{ backgroundColor: 'red', borderBottomColor: 'transparent' }}
+                    navigationBarStyle={{ backgroundColor: 'transparent', borderBottomColor: 'transparent' }}
+                    leftButtonIconStyle={{paddingLeft: 0, marginLeft: 0, width: 20, height: 20}}
+                    drawerImage={require('assets/images/menu.png')}
                 />
             </Provider>
         );
     }
 }
-
-                    // 
-                    // 
-                                        // renderLeftButton={this.sidebarButton}

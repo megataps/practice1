@@ -1,6 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import {
+    Platform,
     Dimensions,
     Image,
     ListView,
@@ -94,7 +95,7 @@ class UserListScreen extends Component {
 
                 renderStickyHeader={() => (
                     <View key="sticky-header" style={styles.stickySection}>
-                        <Text style={styles.stickySectionText}>{this.props.user.full_name}</Text>
+                        <Text style={styles.stickySectionText}></Text>
                     </View>
                 )}
 
@@ -153,7 +154,7 @@ const window = Dimensions.get('window');
 const AVATAR_SIZE = 120;
 const ROW_HEIGHT = 60;
 const PARALLAX_HEADER_HEIGHT = 200;
-const STICKY_HEADER_HEIGHT = 44;
+const STICKY_HEADER_HEIGHT = Platform.OS === 'ios' ? 44 : 54;
 
 const styles = StyleSheet.create({
     container: {
@@ -170,8 +171,8 @@ const styles = StyleSheet.create({
     },
     stickySection: {
         height: STICKY_HEADER_HEIGHT,
-        width: 300,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        backgroundColor: '#3C3B3C'
     },
     stickySectionText: {
         color: 'white',
