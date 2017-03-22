@@ -5,22 +5,34 @@ import styles from './Styles';
 import Colors from 'config/colors';
 
 class IconTextInput extends Component {
+
+    error() {
+        if (this.props.error) {
+            return <Text style={styles.error}>{this.props.error}</Text>
+        }
+        return null
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                <Image
-                    style={styles.icon}
-                    resizeMode='contain'
-                    source={this.props.iconUrI} />
+            <View style={styles.wrapperContainer}>
 
-                <TextInput
-                    ref='TextInput'
-                    {...this.props}
-                    style={styles.input}
-                    underlineColorAndroid={Colors.transparent}
-                    autoCorrect={false}
-                    placeholderTextColor={Colors.white}
-                />
+                <View style={styles.container}>
+                    <Image
+                        style={styles.icon}
+                        resizeMode='contain'
+                        source={this.props.iconUrI} />
+
+                    <TextInput
+                        ref='TextInput'
+                        {...this.props}
+                        style={styles.input}
+                        underlineColorAndroid={Colors.transparent}
+                        autoCorrect={false}
+                        placeholderTextColor={Colors.white}
+                    />
+                </View>
+                {this.error()}
             </View>
         );
     }

@@ -23,6 +23,7 @@ import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
 
 import styles from './Styles';
+import validateWrapper from 'config/validationUtils';
 
 // create a component
 class SignInScreen extends Component {
@@ -32,7 +33,9 @@ class SignInScreen extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            emailError: '',
+            password: '',
+            passwordError: ''
         };
     }
 
@@ -89,6 +92,7 @@ class SignInScreen extends Component {
                                 placeholder={'Email'}
                                 blurOnSubmit={false}
                                 onSubmitEditing={() => this.focusNextField('password')}
+                                error={this.state.emailError}
                             />
                         </View>
 
@@ -103,7 +107,9 @@ class SignInScreen extends Component {
                                 secureTextEntry={true}
                                 returnKeyType={'done'}
                                 placeholder='Password'
-                                onSubmitEditing={this.onSignInPress.bind(this)} />
+                                onSubmitEditing={this.onSignInPress.bind(this)}
+                                error={this.state.passwordError}
+                            />
                         </View>
 
                         <View style={styles.verticalIndicator} />
@@ -136,17 +142,29 @@ class SignInScreen extends Component {
 
                     </View>
 
-                    <KeyboardSpacer/>
+                    <KeyboardSpacer />
 
                 </Image>
             </ScrollView>);
     }
 
     onSignInPress() {
-        this.props.onLogin({
-            email: this.state.email,
-            password: this.state.password
-        });
+        const emailErr = validateWrapper('email', this.state.email);
+        const passwordErr = validateWrapper('password', this.state.password);
+        console.log("DMMM >>> emailErr: "+ emailErr);
+        console.log("DMMM >>> passwordErr: "+ passwordErr);
+
+        this.setState({
+            emailError: emailErr,
+            passwordError: passwordErr
+        })
+
+        if (!emailErr && !passwordErr) {
+            this.props.onLogin({
+                email: this.state.email,
+                password: this.state.password
+            });
+        }
     }
 
     onForgotPasswordPress() {

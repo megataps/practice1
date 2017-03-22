@@ -146,7 +146,6 @@ class SignUpScreen extends Component {
                                 returnKeyType={'next'}
                                 blurOnSubmit={false}
                                 placeholder='Password' />
-                            {/*onSubmitEditing={() => this.focusNextField('birthday')}*/}
                         </View>
 
                         <View style={styles.verticalIndicator}>

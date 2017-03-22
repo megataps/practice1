@@ -1,23 +1,40 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+    wrapperContainer: {
         flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 40,
+        flexDirection: 'column',
+        alignItems: 'center'
     },
 
-    icon:{
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 40,
+        marginTop: 10,
+        alignItems: 'center'
+    },
+
+    icon: {
         width: 21,
         height: 21,
         marginRight: 10,
-        marginLeft: 5
+        padding: 0,
+        marginBottom:0,
     },
 
-    input:{
+    input: {
         flex: 6,
         color: 'white',
-    }
-    
+    },
+
+    error: {
+        flex: 1,
+        color: 'red',
+        backgroundColor: 'transparent',
+        alignSelf:'stretch',
+        marginLeft: 31,
+        marginTop: 5
+    },
+
 });
