@@ -13,6 +13,7 @@ import {
     ScrollView
 } from 'react-native';
 
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { Actions } from 'react-native-router-flux';
@@ -24,6 +25,15 @@ import styles from './Styles';
 
 var alertDialg = (text) => { Alert.alert(text) };
 
+Date.prototype.yyyymmdd = function () {
+    var mm = this.getMonth() + 1; // getMonth() is zero-based
+    var dd = this.getDate();
+    return [this.getFullYear(),
+    (mm > 9 ? '' : '0') + mm,
+    (dd > 9 ? '' : '0') + dd
+    ].join('-');
+};
+
 // create a component
 class SignUpScreen extends Component {
 
@@ -34,9 +44,22 @@ class SignUpScreen extends Component {
             fullName: '',
             email: '',
             password: '',
-            birthday: ''
+            birthday: 'Birthday'
         };
     }
+
+    state = {
+        isDateTimePickerVisible: false,
+    };
+
+    _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+    _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+    _handleDatePicked = (date) => {
+        this.setState({ birthday: date.yyyymmdd() })
+        this._hideDateTimePicker();
+    };
 
     checkToRenderLoading() {
         if (this.props.loading) {
@@ -122,20 +145,39 @@ class SignUpScreen extends Component {
                                 secureTextEntry={true}
                                 returnKeyType={'next'}
                                 blurOnSubmit={false}
-                                onSubmitEditing={() => this.focusNextField('birthday')}
                                 placeholder='Password' />
+                            {/*onSubmitEditing={() => this.focusNextField('birthday')}*/}
                         </View>
 
                         <View style={styles.verticalIndicator}>
                         </View>
 
                         <View style={styles.input}>
-                            <IconTextInput
-                                ref='birthday'
-                                onChangeText={(text) => this.setState({ birthday: text })}
-                                iconUrI={require('assets/images/birthday.png')}
-                                returnKeyType={'done'}
-                                placeholder='Birthday' />
+                            <TouchableOpacity
+                                style={{ backgroundColor: 'transparent', alignItems: 'center' }}
+                                onPress={this._showDateTimePicker}>
+
+                                <View style={{
+                                    flex: 1,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    height: 40,
+                                }}>
+                                    <Image
+                                        style={{
+                                            width: 21,
+                                            height: 21,
+                                            marginRight: 10,
+                                            marginLeft: 5
+                                        }}
+                                        resizeMode='contain'
+                                        source={require('assets/images/birthday.png')} />
+                                    <Text style={{
+                                        flex: 6,
+                                        color: 'white',
+                                    }}>{this.state.birthday}</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={styles.verticalIndicator} />
@@ -163,6 +205,11 @@ class SignUpScreen extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible}
+                        onConfirm={this._handleDatePicked}
+                        onCancel={this._hideDateTimePicker}
+                    />
                     <KeyboardSpacer />
                 </Image>
             </ScrollView>
