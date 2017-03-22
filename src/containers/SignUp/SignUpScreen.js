@@ -13,6 +13,8 @@ import {
     ScrollView
 } from 'react-native';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { onSignUp } from 'reducers/SignUpReducer';
@@ -55,10 +57,10 @@ class SignUpScreen extends Component {
         );
     }
 
-    componentDidUpdate(){
-         if (this.props.result) {
-             Actions.pop();
-         }
+    componentDidUpdate() {
+        if (this.props.result) {
+            Actions.pop();
+        }
     }
 
     focusNextField(nextField) {
@@ -67,102 +69,102 @@ class SignUpScreen extends Component {
 
     render() {
         return (
-                        <ScrollView
+            <ScrollView
                 scrollEnabled={false}>
-            <Image style={styles.container}
-                source={require('assets/images/bg_signin.png')}>
+                <Image style={styles.container}
+                    source={require('assets/images/bg_signin.png')}>
 
-                <View style={styles.logo}>
-                    <Text style={{
-                        color: 'white',
-                        backgroundColor: '#00000000',
-                        fontSize: 21,
-                        marginLeft: 15,
-                        marginTop: (Platform.OS === 'ios') ? 80 : 40
-                    }}>Sign Up </Text>
-                </View>
-
-                <View style={styles.inputForm}>
-
-                    <View style={styles.input}>
-                        <IconTextInput
-                            onChangeText={(text) => this.setState({ fullName: text })}
-                            iconUrI={require('assets/images/user_name.png')}
-                            returnKeyType={'next'}
-                            blurOnSubmit={false}
-                            onSubmitEditing={() => this.focusNextField('email')}
-                            placeholder='Name' />
+                    <View style={styles.logo}>
+                        <Text style={{
+                            color: 'white',
+                            backgroundColor: '#00000000',
+                            fontSize: 21,
+                            marginLeft: 15,
+                            marginTop: (Platform.OS === 'ios') ? 80 : 40
+                        }}>Sign Up </Text>
                     </View>
 
-                    <View style={styles.verticalIndicator}>
+                    <View style={styles.inputForm}>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                onChangeText={(text) => this.setState({ fullName: text })}
+                                iconUrI={require('assets/images/user_name.png')}
+                                returnKeyType={'next'}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => this.focusNextField('email')}
+                                placeholder='Name' />
+                        </View>
+
+                        <View style={styles.verticalIndicator}>
+                        </View>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                ref='email'
+                                onChangeText={(text) => this.setState({ email: text })}
+                                iconUrI={require('assets/images/email.png')}
+                                returnKeyType={'next'}
+                                keyboardType={'email-address'}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => this.focusNextField('password')}
+                                placeholder='Email' />
+                        </View>
+
+                        <View style={styles.verticalIndicator}>
+                        </View>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                ref='password'
+                                onChangeText={(text) => this.setState({ password: text })}
+                                iconUrI={require('assets/images/password.png')}
+                                secureTextEntry={true}
+                                returnKeyType={'next'}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => this.focusNextField('birthday')}
+                                placeholder='Password' />
+                        </View>
+
+                        <View style={styles.verticalIndicator}>
+                        </View>
+
+                        <View style={styles.input}>
+                            <IconTextInput
+                                ref='birthday'
+                                onChangeText={(text) => this.setState({ birthday: text })}
+                                iconUrI={require('assets/images/birthday.png')}
+                                returnKeyType={'done'}
+                                placeholder='Birthday' />
+                        </View>
+
+                        <View style={styles.verticalIndicator} />
+
                     </View>
 
-                    <View style={styles.input}>
-                        <IconTextInput
-                            ref='email'
-                            onChangeText={(text) => this.setState({ email: text })}
-                            iconUrI={require('assets/images/email.png')}
-                            returnKeyType={'next'}
-                            keyboardType={'email-address'}
-                            blurOnSubmit={false}
-                            onSubmitEditing={() => this.focusNextField('password')}
-                            placeholder='Email' />
+                    <View style={styles.bottomBar}>
+
+                        <Text style={styles.errorText}>
+                            {this.props.error}
+                        </Text>
+
+                        {this.checkToRenderLoading()}
+
+                        <View style={{
+                            flex: 1,
+                            paddingBottom: 20,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row'
+                        }}>
+                            <Text style={{ color: 'white', backgroundColor: '#00000000', }}>Already have an account? </Text>
+                            <TouchableOpacity onPress={this.onSignInPress.bind(this)}>
+                                <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#00000000', }}> Sign In</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-
-                    <View style={styles.verticalIndicator}>
-                    </View>
-
-                    <View style={styles.input}>
-                        <IconTextInput
-                            ref='password'
-                            onChangeText={(text) => this.setState({ password: text })}
-                            iconUrI={require('assets/images/password.png')}
-                            secureTextEntry={true}
-                            returnKeyType={'next'}
-                            blurOnSubmit={false}
-                            onSubmitEditing={() => this.focusNextField('birthday')}
-                            placeholder='Password' />
-                    </View>
-
-                    <View style={styles.verticalIndicator}>
-                    </View>
-
-                    <View style={styles.input}>
-                        <IconTextInput
-                            ref='birthday'
-                            onChangeText={(text) => this.setState({ birthday: text })}
-                            iconUrI={require('assets/images/birthday.png')}
-                            returnKeyType={'done'}
-                            placeholder='Birthday' />
-                    </View>
-
-                    <View style={styles.verticalIndicator} />
-
-                </View>
-
-                <View style={styles.bottomBar}>
-
-                    <Text style={styles.errorText}>
-                        {this.props.error}
-                    </Text>
-
-                    {this.checkToRenderLoading()}
-
-                    <View style={{
-                        flex: 1,
-                        paddingBottom: 20,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'row'
-                    }}>
-                        <Text style={{ color: 'white', backgroundColor: '#00000000', }}>Already have an account? </Text>
-                        <TouchableOpacity onPress={this.onSignInPress.bind(this)}>
-                            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#00000000', }}> Sign In</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-            </Image>
+                    <KeyboardSpacer />
+                </Image>
             </ScrollView>
         );
     }

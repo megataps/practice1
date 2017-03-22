@@ -13,6 +13,8 @@ import {
     ActivityIndicator
 } from 'react-native';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { onLogin } from 'reducers/SignInReducer';
@@ -120,8 +122,8 @@ class SignInScreen extends Component {
                         {this.checkToRenderLoading()}
                         <View style={{
                             flex: 1,
-                            paddingBottom: 10,
-                            alignItems: 'center',
+                            paddingBottom: 20,
+                            alignItems: 'flex-end',
                             justifyContent: 'center',
                             flexDirection: 'row',
                             backgroundColor: '#00000000'
@@ -133,6 +135,8 @@ class SignInScreen extends Component {
                         </View>
 
                     </View>
+
+                    <KeyboardSpacer/>
 
                 </Image>
             </ScrollView>);

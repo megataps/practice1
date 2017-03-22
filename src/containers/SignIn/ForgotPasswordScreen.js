@@ -13,6 +13,8 @@ import {
     ActivityIndicator
 } from 'react-native';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
 
@@ -22,7 +24,7 @@ import styles from './Styles';
 // create a component
 class ForgotPasswordScreen extends Component {
 
-  constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -30,7 +32,7 @@ class ForgotPasswordScreen extends Component {
         };
     }
 
-        checkToRenderLoading() {
+    checkToRenderLoading() {
         if (this.props.loading) {
             return (
                 <ActivityIndicator
@@ -67,10 +69,11 @@ class ForgotPasswordScreen extends Component {
                             <IconTextInput
                                 onChangeText={(text) => this.setState({ email: text })}
                                 iconUrI={require('assets/images/email.png')}
-                                isPassword={false}
                                 keyboardType='email-address'
                                 returnKey='done'
-                                placeHolder='Email' />
+                                returnKeyType={'done'}
+                                placeholder='Email'
+                            />
                         </View>
 
                         <View style={styles.verticalIndicator} />
@@ -83,7 +86,7 @@ class ForgotPasswordScreen extends Component {
                         </Text>
                         {this.checkToRenderLoading()}
                     </View>
-
+                    <KeyboardSpacer />
                 </Image>
             </ScrollView>);
     }

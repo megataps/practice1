@@ -9,13 +9,13 @@ export default StyleSheet.create({
     },
 
     logo: {
-        flex: 2,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'center',
     },
 
     inputForm: {
-        flex: 1,
+        flex: 1.5,
         alignItems: 'center',
         paddingLeft: 25,
         paddingRight: 25,
