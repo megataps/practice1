@@ -69,7 +69,7 @@ class ForgotPasswordScreen extends Component {
                                 iconUrI={require('assets/images/email.png')}
                                 isPassword={false}
                                 keyboardType='email-address'
-                                returnKey='next'
+                                returnKey='done'
                                 placeHolder='Email' />
                         </View>
 

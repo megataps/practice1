@@ -60,6 +60,10 @@ class SignInScreen extends Component {
         }
     }
 
+    focusNextField(nextField) {
+        this.refs[nextField].refs.TextInput.focus();
+    }
+
     render() {
         return (
             <ScrollView
@@ -78,10 +82,12 @@ class SignInScreen extends Component {
                             <IconTextInput
                                 onChangeText={(text) => this.setState({ email: text })}
                                 iconUrI={require('assets/images/email.png')}
-                                isPassword={false}
-                                keyboardType='email-address'
-                                returnKey='next'
-                                placeHolder='Email' />
+                                keyboardType={'email-address'}
+                                returnKeyType={'next'}
+                                placeholder={'Email'}
+                                blurOnSubmit={false}
+                                onSubmitEditing={() => this.focusNextField('password')}
+                            />
                         </View>
 
                         <View style={styles.verticalIndicator}>
@@ -92,9 +98,9 @@ class SignInScreen extends Component {
                                 ref='password'
                                 onChangeText={(text) => this.setState({ password: text })}
                                 iconUrI={require('assets/images/password.png')}
-                                isPassword={true}
-                                returnKey='done'
-                                placeHolder='Password'
+                                secureTextEntry={true}
+                                returnKeyType={'done'}
+                                placeholder='Password'
                                 onSubmitEditing={this.onSignInPress.bind(this)} />
                         </View>
 
@@ -147,10 +153,6 @@ class SignInScreen extends Component {
         Actions.SignUpScene();
     }
 
-    focusNextField(nextField) {
-        // this.refs[nextField].focus();
-        Alert.alert(nextField);
-    }
 }
 
 // Map Redux state to component props

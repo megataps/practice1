@@ -12,26 +12,22 @@ class IconTextInput extends Component {
                     style={styles.icon}
                     resizeMode='contain'
                     source={this.props.iconUrI} />
+
                 <TextInput
+                    ref='TextInput'
                     {...this.props}
                     style={styles.input}
                     underlineColorAndroid={Colors.transparent}
                     autoCorrect={false}
-                    keyboardType={this.props.keyboardType}
-                    secureTextEntry={this.props.isPassword}
                     placeholderTextColor={Colors.white}
-                    returnKeyType={this.props.returnKey}
-                    placeholder={this.props.placeHolder}
-                    foc
-                     />
+                />
             </View>
         );
     }
 }
 
 IconTextInput.propTypes = {
-  iconUrI: PropTypes.number.isRequired,
-  returnKey: PropTypes.string.isRequired
+    iconUrI: PropTypes.number.isRequired
 };
 
 export default IconTextInput;

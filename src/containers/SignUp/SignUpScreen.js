@@ -61,6 +61,10 @@ class SignUpScreen extends Component {
          }
     }
 
+    focusNextField(nextField) {
+        this.refs[nextField].refs.TextInput.focus();
+    }
+
     render() {
         return (
                         <ScrollView
@@ -84,9 +88,10 @@ class SignUpScreen extends Component {
                         <IconTextInput
                             onChangeText={(text) => this.setState({ fullName: text })}
                             iconUrI={require('assets/images/user_name.png')}
-                            isPassword={false}
-                            returnKey='next'
-                            placeHolder='Name' />
+                            returnKeyType={'next'}
+                            blurOnSubmit={false}
+                            onSubmitEditing={() => this.focusNextField('email')}
+                            placeholder='Name' />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -94,12 +99,14 @@ class SignUpScreen extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
+                            ref='email'
                             onChangeText={(text) => this.setState({ email: text })}
                             iconUrI={require('assets/images/email.png')}
-                            isPassword={false}
-                            returnKey='next'
-                            keyboardType='email-address'
-                            placeHolder='Email' />
+                            returnKeyType={'next'}
+                            keyboardType={'email-address'}
+                            blurOnSubmit={false}
+                            onSubmitEditing={() => this.focusNextField('password')}
+                            placeholder='Email' />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -107,11 +114,14 @@ class SignUpScreen extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
+                            ref='password'
                             onChangeText={(text) => this.setState({ password: text })}
                             iconUrI={require('assets/images/password.png')}
-                            isPassword={true}
-                            returnKey='next'
-                            placeHolder='Password' />
+                            secureTextEntry={true}
+                            returnKeyType={'next'}
+                            blurOnSubmit={false}
+                            onSubmitEditing={() => this.focusNextField('birthday')}
+                            placeholder='Password' />
                     </View>
 
                     <View style={styles.verticalIndicator}>
@@ -119,11 +129,11 @@ class SignUpScreen extends Component {
 
                     <View style={styles.input}>
                         <IconTextInput
+                            ref='birthday'
                             onChangeText={(text) => this.setState({ birthday: text })}
                             iconUrI={require('assets/images/birthday.png')}
-                            isPassword={false}
-                            returnKey='done'
-                            placeHolder='Birthday' />
+                            returnKeyType={'done'}
+                            placeholder='Birthday' />
                     </View>
 
                     <View style={styles.verticalIndicator} />
