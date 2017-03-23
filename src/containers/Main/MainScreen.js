@@ -38,6 +38,10 @@ class MainScreen extends Component {
     this._drawer.close()
   };
 
+  onSetting = () => {
+    Alert.alert('Setting.......');
+  };
+
   render() {
     const state = this.props.navigationState;
     const children = state.children;
@@ -51,7 +55,8 @@ class MainScreen extends Component {
             closeDrawer={this.closeDrawer}
             onLogout={this.onLogout}
             onProfile={this.onProfile}
-            onAbout={this.onAbout} />
+            onAbout={this.onAbout}
+            onSetting={this.onSetting} />
         }
         acceptDoubleTap
         styles={{ main: { shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15 } }}

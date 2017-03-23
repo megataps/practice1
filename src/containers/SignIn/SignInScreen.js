@@ -92,6 +92,11 @@ class SignInScreen extends Component {
                                 placeholder={'Email'}
                                 blurOnSubmit={false}
                                 onSubmitEditing={() => this.focusNextField('password')}
+                                onBlur={() => {
+                                    this.setState({
+                                        emailError: validateWrapper('email', this.state.email)
+                                    })
+                                }}
                                 error={this.state.emailError}
                             />
                         </View>
@@ -109,6 +114,11 @@ class SignInScreen extends Component {
                                 placeholder='Password'
                                 onSubmitEditing={this.onSignInPress.bind(this)}
                                 error={this.state.passwordError}
+                                onBlur={() => {
+                                    this.setState({
+                                        passwordError: validateWrapper('password', this.state.password)
+                                    })
+                                }}
                             />
                         </View>
 
@@ -151,8 +161,8 @@ class SignInScreen extends Component {
     onSignInPress() {
         const emailErr = validateWrapper('email', this.state.email);
         const passwordErr = validateWrapper('password', this.state.password);
-        console.log("DMMM >>> emailErr: "+ emailErr);
-        console.log("DMMM >>> passwordErr: "+ passwordErr);
+        console.log("DMMM >>> emailErr: " + emailErr);
+        console.log("DMMM >>> passwordErr: " + passwordErr);
 
         this.setState({
             emailError: emailErr,
@@ -168,13 +178,21 @@ class SignInScreen extends Component {
     }
 
     onForgotPasswordPress() {
+        this.cleanUpErrorMessage();
         Actions.ForgotPasswordScene();
     }
 
     onSignUpPress() {
+        this.cleanUpErrorMessage();
         Actions.SignUpScene();
     }
 
+    cleanUpErrorMessage() {
+        this.setState({
+            emailError: '',
+            passwordError: ''
+        });
+    }
 }
 
 // Map Redux state to component props

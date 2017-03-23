@@ -45,6 +45,13 @@ class MenuScreen extends Component {
                 <View style={{ backgroundColor: '#901D1D26', height: 0.4 }} />
                 <TouchableOpacity
                     style={styles.signInButton}
+                    onPress={this.props.onSetting}
+                    underlayColor='#43ff3366'>
+                    <Text style={styles.button}>Setting</Text>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: '#901D1D26', height: 0.4 }} />
+                <TouchableOpacity
+                    style={styles.signInButton}
                     onPress={this.props.onLogout}
                     underlayColor='#43ff3366'>
                     <Text style={styles.button}>Logout</Text>
@@ -56,7 +63,7 @@ class MenuScreen extends Component {
 }
 
 MenuScreen.propTypes = {
-  closeDrawer: PropTypes.func.isRequired
+    closeDrawer: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

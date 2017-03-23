@@ -17,7 +17,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import IconTextInput from 'components/IconTextInput/IconTextInput';
-
+import validateWrapper from 'config/validationUtils';
 
 import styles from './Styles';
 
@@ -27,8 +27,9 @@ class ForgotPasswordScreen extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            email: ''
+         this.state = {
+            email: '',
+            emailError: ''
         };
     }
 
@@ -73,6 +74,12 @@ class ForgotPasswordScreen extends Component {
                                 returnKey='done'
                                 returnKeyType={'done'}
                                 placeholder='Email'
+                                onBlur={() => {
+                                    this.setState({
+                                        emailError: validateWrapper('email', this.state.email)
+                                    })
+                                }}
+                                error={this.state.emailError}
                             />
                         </View>
 
@@ -89,6 +96,18 @@ class ForgotPasswordScreen extends Component {
                     <KeyboardSpacer />
                 </Image>
             </ScrollView>);
+    }
+
+        onSignInPress() {
+        const emailErr = validateWrapper('email', this.state.email);
+        console.log("DMMM >>> emailErr: " + emailErr);
+
+        this.setState({
+            emailError: emailErr
+        })
+
+        if (!emailErr) {
+        }
     }
 }
 
